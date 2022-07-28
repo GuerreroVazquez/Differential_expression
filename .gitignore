@@ -6,3 +6,7 @@ node_modules
 # Generated files
 .psci
 output
+script/log.out
+script/log.info
+script/log.in
+script/log.err
