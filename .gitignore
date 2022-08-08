@@ -10,3 +10,11 @@ script/log.out
 script/log.info
 script/log.in
 script/log.err
+differential/bin/*
+differential/lib/*
+*.cfg
+differential/lib64
+*.LOG
+*.fastq
+*.zip
+*.gz

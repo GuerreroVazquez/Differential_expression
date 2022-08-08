@@ -35,7 +35,7 @@ dowload_sample () {
         else
         	#echo "Downloading SRA"
         	download_sra ${2}
-            check_sra # if entry is sra file check if converted correctly
+            
     fi
         
 	# fasterq-dump SRR12021928.sra -o SRR12021928 -O fastq -Svp |& tee -a test_fasterq-dump.LOG
@@ -44,8 +44,8 @@ dowload_sample () {
 
 
 samples_names="samples.txt"
-experiment="GSM4618168"
-pwd
+experiment="TEST"
+
 while IFS= read -r sample; do
 	echo "Processing sample $sample" >&3
 	mkdir -p ../Experiments/$experiment
