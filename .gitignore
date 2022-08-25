@@ -18,3 +18,4 @@ differential/lib64
 *.fastq
 *.zip
 *.gz
+Mus_musculus.GRCm39.dna.toplevel.fa
