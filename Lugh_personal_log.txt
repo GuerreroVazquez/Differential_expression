@@ -1,0 +1,31 @@
+Bitacora de commands on Lugh
+
+diff_exp_adventure
+fasterq-dump SRR2121685 -o SRR2121685 -O fastq/ -S --include-technical |& tee -a fasterq-dump.LOG
+
+
+
+Installing SRA-toolkit
+wget --output-document sratoolkit.tar.gz https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz
+--2022-09-05 12:44:24--  https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz
+
+tar -vxzf sratoolkit.tar.gz
+
+export PATH=$PATH:/data2/kGuerreroVazquez/diff_exp_adventure/sratoolkit.3.0.0-ubuntu64/bin
+
+vdb-config --interactive
+
+(define cache folder as new directory tmp)
+
+
+
+cd /data2/kGuerreroVazquez/diff_ex_adventure
+
+
+
+Start running the fasterq-dump
+nohup fasterq-dump SRR12021926 -o SRR12021926 -O fastq/ -S --include-technical |& tee -a fasterq-dump.LOG &
+
+
+mkdir 
+fastqc fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq --outdir=fastqc
