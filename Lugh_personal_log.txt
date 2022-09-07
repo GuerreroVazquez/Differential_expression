@@ -18,14 +18,51 @@ vdb-config --interactive
 (define cache folder as new directory tmp)
 
 
-
+Installing Fastqc
 cd /data2/kGuerreroVazquez/diff_ex_adventure
 
+- Download fastqc_v0.11.9.zip
+unzip fastqc_v0.11.9.zip
+chmod 777 FastQC/fastqc
+
+
+
+
+cd /data2/kGuerreroVazquez/diff_ex_adventure
 
 
 Start running the fasterq-dump
 nohup fasterq-dump SRR12021926 -o SRR12021926 -O fastq/ -S --include-technical |& tee -a fasterq-dump.LOG &
 
 
-mkdir 
-fastqc fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq --outdir=fastqc
+mkdir fastqc 
+FastQC/fastqc fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq --outdir=fastqc
+
+
+# STAR --runThreadN 15 --runMode genomeGenerate --genomeDir Experiments/TEST/SRR2121685/aligment/index --genomeFastaFiles Mus_musculus.GRCm39.dna.toplevel.fa --sjdbGTFfile Mus_musculus.GRCm39.107.gtf --sjdbOverhang 1
+# cutadapt -q 28 -m 30 -a  Experiments/TEST/SRR2121685/fastq/SRR2121685_1.fastq -A  Experiments/TEST/SRR2121685/fastq/SRR2121685_2.fastq
+
+nohup cutadapt -q 28 -m 30 fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq 1> cutadapt.out 2> cutadapt.err &
+
+
+
+
+reference obtained from 
+	http://ftp.ensembl.org/pub/release-107/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa
+and annotation from 
+	http://ftp.ensembl.org/pub/release-107/gtf/homo_sapiens/Homo_sapiens.GRCh38.107.gtf.gz
+
+
+
+
+Not really done:
+
+cutadapt -q 28 -m 30 -a  Experiments/TEST/SRR2121685/fastq/SRR2121685_1.fastq -A  Experiments/TEST/SRR2121685/fastq/SRR2121685_2.fastq
+or 
+
+atria --detect-adapter -r Experiments/TEST/SRR2121685/fastq/SRR2121685_2.fastq -R Experiments/TEST/SRR2121685/fastq/SRR2121685_2.fastq
+
+
+STAR --runThreadN 15 --runMode genomeGenerate --genomeDir Experiments/TEST/SRR2121685/aligment/index --genomeFastaFiles references/Homo_sapiens.GRCh38.dna.toplevel.fa --sjdbGTFfile Homo_sapiens.GRCh38.107.gtf --sjdbOverhang 1
+
+
