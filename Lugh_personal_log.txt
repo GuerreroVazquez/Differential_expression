@@ -7,7 +7,7 @@ fasterq-dump SRR2121685 -o SRR2121685 -O fastq/ -S --include-technical |& tee -a
 
 Installing SRA-toolkit
 wget --output-document sratoolkit.tar.gz https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz
---2022-09-05 12:44:24--  https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz
+--2022-09-05 12:44:24-- https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz
 
 tar -vxzf sratoolkit.tar.gz
 
@@ -40,10 +40,11 @@ FastQC/fastqc fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq --outdir=fastq
 
 
 # STAR --runThreadN 15 --runMode genomeGenerate --genomeDir Experiments/TEST/SRR2121685/aligment/index --genomeFastaFiles Mus_musculus.GRCm39.dna.toplevel.fa --sjdbGTFfile Mus_musculus.GRCm39.107.gtf --sjdbOverhang 1
-# cutadapt -q 28 -m 30 -a  Experiments/TEST/SRR2121685/fastq/SRR2121685_1.fastq -A  Experiments/TEST/SRR2121685/fastq/SRR2121685_2.fastq
+# cutadapt -q 28 -m 30 -a Experiments/TEST/SRR2121685/fastq/SRR2121685_1.fastq -A Experiments/TEST/SRR2121685/fastq/SRR2121685_2.fastq
 
-nohup cutadapt -q 28 -m 30 fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq 1> cutadapt.out 2> cutadapt.err &
+srun cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq 1 -o out.SRR12021926_1.fastq -p out.SRR12021926_2.fastq  > cutadapt.out 2> cutadapt.err &
 
+srun -n 8 -N 4 cutadapt -q 28 -m 30 -j 4 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq -o out_4.SRR12021926_1.fastq -p out_4.SRR12021926_2.fastq  > cutadapt_4.out 2> cutadapt_4.err &
 
 
 
@@ -55,9 +56,43 @@ and annotation from
 
 
 
+corri
+[kGuerreroVazquez@lugh diff_exp_adventure]$ cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq -o out_4.SRR12021926_1.fastq -p out_4.SRR12021926_2.fastq
+This is cutadapt 1.18 with Python 2.7.5
+Command line parameters: -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq -o out_4.SRR12021926_1.fastq -p out_4.SRR12021926_2.fastq
+Processing reads on 1 core in paired-end mode ...
+
+^CInterrupted
+
+Lo interrumpi porque tardo mucho y lo volvi a correr como 
+
+
+[kGuerreroVazquez@lugh diff_exp_adventure]$ nohup cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/SRR12021926_1.fastq fastq/SRR12021926_2.fastq -o out_4.SRR12021926_1.fastq -p out_4.SRR12021926_2.fastq > logs.txt &
+[1] 30861
+(dea) [kGuerreroVazquez@lugh diff_exp_adventure]$ nohup: ignoring input and redirecting stderr to stdout
+
+Ahora voy a cruzar los dedos de que no se muera en el fin de semana (no murio)
+
+
+
+
+Lunes 19 de septiembre 2022
+11:08 am
+FastQC/fastqc out_4.SRR12021926_1.fastq out_4.SRR12021926_2.fastq --outdir=fastqc
+
+
+
+
+
+
+
+
+
+
 Not really done:
 
-cutadapt -q 28 -m 30 -a  Experiments/TEST/SRR2121685/fastq/SRR2121685_1.fastq -A  Experiments/TEST/SRR2121685/fastq/SRR2121685_2.fastq
+cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT  
+  Experiments/TEST/SRR2121685/fastq/SRR2121685_1.fastq Experiments/TEST/SRR2121685/fastq/SRR2121685_2.fastq
 or 
 
 atria --detect-adapter -r Experiments/TEST/SRR2121685/fastq/SRR2121685_2.fastq -R Experiments/TEST/SRR2121685/fastq/SRR2121685_2.fastq

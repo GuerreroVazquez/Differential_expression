@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH --cpus-per-task=4 --mem-per-cpu=16g --ntasks=1
+#SBATCH hetjob
+#SBATCH --cpus-per-task=2 --mem-per-cpu=1g  --ntasks=8
+#SBATCH --nodes=1 --constraint=haswell
+#BB create_persistent name=alpha capacity=10 access=striped type=scratch
+#DW persistentdw name=alpha
+#SBATCH hetjob
+#SBATCH --nodes=16 --constraint=knl
+#EXCLUDED DW persistentdw name=alpha
+
+
+cd /data2/kGuerreroVazquez/diff_exp_adventure
+source dea/bin/activate
+module load singularity
+
+srun fasterq-dump SRR12021927 -o SRR12021927 -O fastq/ -S --include-technical |& tee -a fasterq-dump_27.LOG &
+
+srun FastQC/fastqc fastq/SRR12021927_1.fastq fastq/SRR12021927_2.fastq --outdir=fastqc
+
+srun cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/SRR12021927_1.fastq fastq/SRR12021927_2.fastq -o out_4.SRR12021927_1.fastq -p out_4.SRR12021927_2.fastq > logs.txt &
+
+kallisto pseudo -i index -o output -b batch.txt
