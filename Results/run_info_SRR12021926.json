@@ -1,0 +1,13 @@
+{
+	"n_targets": 14,
+	"n_bootstraps": 0,
+	"n_processed": 672088605,
+	"n_pseudoaligned": 7426,
+	"n_unique": 6607,
+	"p_pseudoaligned": 0.0,
+	"p_unique": 0.0,
+	"kallisto_version": "0.48.0",
+	"index_version": 10,
+	"start_time": "Wed Sep 21 11:38:56 2022",
+	"call": "kallisto quant -i transcripts.idx -o outputKallisto -b 100 --verbose cutadapted/out_4.SRR12021926_1.fastq cutadapted/out_4.SRR12021926_2.fastq"
+}
