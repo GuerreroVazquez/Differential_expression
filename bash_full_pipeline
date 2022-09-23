@@ -14,8 +14,9 @@
 
 
 samples_names="samples.txt"
-samples_folder="data/"
+samples_folder="data"
 experiments="$samples_folder/rnaSeq_samples.txt"
+echo experiments
 cd /data2/kGuerreroVazquez/diff_exp_adventure
 source dea/bin/activate
 module load singularity
@@ -33,20 +34,24 @@ while IFS= read -r experiment; do
       fasterq-dump -h
       echo "fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |& tee -a fasterq-dump_$sample.LOG &"
       cat fastq/$experiment/$sample/${sample}_1.fastq
+      
+      mkdir -p fastqc/$experiment/$sample
       FastQC/fastqc -h
       echo "FastQC/fastqc fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq --outdir=fastqc/$experiment/$sample"
-      mkdir -p fastqc/$experiment/$sample
       cat fastqc/$experiment/$sample/${sample}_1.fastq
       cutadapt -h
       echo "cutadapt -q 28 -m 30 -j 4 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq -o cutadapted/$experiment/$sample/${sample}_1.fastq -p cutadapted/$experiment/$sample/${sample}_2.fastq  > cutadapt_${sample}.out 2> cutadapt_${sample}.err &"
       cat cutadapted/$experiment/$sample/${sample}_1.fastq
+      FastQC/fastqc -h
+      echo "FastQC/fastqc fastq/$experiment/$sample/${sample}_1_postClean.fastq fastq/$experiment/$sample/${sample}_2_postClean.fastq --outdir=fastqc/$experiment/$sample"
+      
       mkdir -p outputKallisto/$experiment/$sample
-      singularity shell kallistito_0.1.sif
-      kallisto -h
-      echo "kallisto quant -i reference/homo_sapiens/transcriptome.idx --pseudobam -o outputKallisto/$experiment/$sample/${sample} -t 12 cutadapted/$experiment/$sample/${sample}_1.fastq cutadapted/$experiment/$sample/${sample}_2.fastq --verbose |& tee -a Kallisto_quant_${sample}.LOG &"
-      exit
+      singularity exec kallistito_0.1.sif kallisto
+      echo "singularity exec kallistito_0.1.sif kallisto quant -i reference/homo_sapiens/transcriptome.idx --pseudobam -o outputKallisto/$experiment/$sample/${sample} -t 12 cutadapted/$experiment/$sample/${sample}_1.fastq cutadapted/$experiment/$sample/${sample}_2.fastq --verbose |& tee -a Kallisto_quant_${sample}.LOG &"
+      rm -r fastq/$experiment/$sample
+      rm -r cutadapted/$experiment/$sample
+
   done < $experiment_samples
   
-
 done < $experiments
 
