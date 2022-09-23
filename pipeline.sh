@@ -21,6 +21,7 @@ echo experiments
 cd /data2/kGuerreroVazquez/diff_exp_adventure
 source dea/bin/activate
 module load singularity
+module load java
 export PATH=$PATH:/data2/kGuerreroVazquez/diff_exp_adventure/sratoolkit.3.0.0-ubuntu64/bin
 
 date -u
