@@ -37,7 +37,7 @@ while IFS= read -r experiment; do
 
       echo "Running Fastq-dump"
 
-      fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |& tee -a fasterq-dump_$sample.LOG &
+      fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
       status=$?
       if [ $status -eq 0 ]; then
           echo "Successfully ran Fastq-dump"
@@ -57,9 +57,9 @@ while IFS= read -r experiment; do
         echo "Error found on Fastqc. Risking it..."
       fi
       
-
+      mkdir -p cutadapted/$experiment/$sample
       echo "Running cutadapt"
-      cutadapt -q 28 -m 30 -j 4 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq -o cutadapted/$experiment/$sample/${sample}_1.fastq -p cutadapted/$experiment/$sample/${sample}_2.fastq  > cutadapt_${sample}.out 2> cutadapt_${sample}.err &
+      cutadapt -q 28 -m 30 -j 4 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq -o cutadapted/$experiment/$sample/${sample}_1.fastq -p cutadapted/$experiment/$sample/${sample}_2.fastq  > cutadapt_${sample}.out 2> cutadapt_${sample}.err
       status=$?
       if [ $status -eq 0 ]; then
           echo "Successfully ran cutadapt"
@@ -82,7 +82,7 @@ while IFS= read -r experiment; do
       echo "Running kallisto"
 
       mkdir -p outputKallisto/$experiment/$sample
-      singularity exec kallistito_0.1.sif kallisto quant -i reference/homo_sapiens/transcriptome.idx --pseudobam -o outputKallisto/$experiment/$sample/${sample} -t 12 cutadapted/$experiment/$sample/${sample}_1.fastq cutadapted/$experiment/$sample/${sample}_2.fastq --verbose |& tee -a Kallisto_quant_${sample}.LOG &
+      singularity exec kallistito_0.1.sif kallisto quant -i reference/homo_sapiens/transcriptome.idx --pseudobam -o outputKallisto/$experiment/$sample/${sample} -t 12 cutadapted/$experiment/$sample/${sample}_1.fastq cutadapted/$experiment/$sample/${sample}_2.fastq --verbose | tee -a Kallisto_quant_${sample}.LOG 
       status=$?
       if [ $status -eq 0 ]; then
           echo "Successfully ran Kallisto"
