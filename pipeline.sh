@@ -69,7 +69,7 @@ while IFS= read -r experiment; do
       fi
       
       echo "Running Second Fastqc"
-      FastQC/fastqc fastq/$experiment/$sample/${sample}_1_postClean.fastq fastq/$experiment/$sample/${sample}_2_postClean.fastq --outdir=fastqc/$experiment/$sample
+      FastQC/fastqc cutadapted/$experiment/$sample/${sample}_1_postClean.fastq cutadapted/$experiment/$sample/${sample}_2_postClean.fastq --outdir=fastqc/$experiment/$sample
       status=$?
       if [ $status -eq 0 ]; then
           echo "Successfully ran Fastqc"
