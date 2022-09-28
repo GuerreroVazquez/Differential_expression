@@ -15,16 +15,17 @@
 
 samples_names="samples.txt"
 samples_folder="data"
-experiments="$samples_folder/rnaSeq_samples.txt"
+read -p "Enter rnaSeq_samples file: " file
+experiments="$samples_folder/$file"
 echo $(date)-${sample}:  experiments >>Karen_SeqAlig_log.txt
 cd /data2/kGuerreroVazquez/diff_exp_adventure
 source dea/bin/activate
 module load singularity
 module load java
 export PATH=$PATH:/data2/kGuerreroVazquez/diff_exp_adventure/sratoolkit.3.0.0-ubuntu64/bin
-
+COUNTER=0
 date -u
- # Get the experiment name
+ ## Get the experiment name
 while IFS= read -r experiment; do
   echo $(date)-${sample}:  "Extracting experiment $experiment" >>Karen_SeqAlig_log.txt
   experiment_samples="$samples_folder/$experiment.txt"
@@ -33,27 +34,27 @@ while IFS= read -r experiment; do
       mkdir -p $experiment/$sample
       mkdir -p fastq/$experiment/$sample
 
-      # echo $(date)-${sample}:  "Running Fastq-dump" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "Running Fastq-dump" >>Karen_SeqAlig_log.txt
 
-      # fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
-      # status=$?
-      # if [ $status -eq 0 ]; then
-      #    echo $(date)-${sample}:  "Successfully ran Fastq-dump" >>Karen_SeqAlig_log.txt
-      # else 
-      #   echo $(date)-${sample}:  "Error found on Fastq-dump. Skiping sample" >>Karen_SeqAlig_log.txt
-      #  continue
-      # fi
+      fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
+      status=$?
+      if [ $status -eq 0 ]; then
+         echo $(date)-${sample}:  "Successfully ran Fastq-dump" >>Karen_SeqAlig_log.txt
+      else 
+        echo $(date)-${sample}:  "Error found on Fastq-dump. Skiping sample" >>Karen_SeqAlig_log.txt
+       continue
+      fi
       
-      # echo $(date)-${sample}:  "Running Fastqc" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "Running Fastqc" >>Karen_SeqAlig_log.txt
 
-      # mkdir -p fastqc/$experiment/$sample
-      # FastQC/fastqc fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq --outdir=fastqc/$experiment/$sample
-      # status=$?
-      # if [ $status -eq 0 ]; then
-      #     echo $(date)-${sample}:  "Successfully ran Fastqc" >>Karen_SeqAlig_log.txt
-      # else 
-      #   echo $(date)-${sample}:  "Error found on Fastqc. Risking it..." >>Karen_SeqAlig_log.txt
-      # fi
+      mkdir -p fastqc/$experiment/$sample
+      FastQC/fastqc fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq --outdir=fastqc/$experiment/$sample
+      status=$?
+      if [ $status -eq 0 ]; then
+          echo $(date)-${sample}:  "Successfully ran Fastqc" >>Karen_SeqAlig_log.txt
+      else 
+        echo $(date)-${sample}:  "Error found on Fastqc. Risking it..." >>Karen_SeqAlig_log.txt
+      fi
       
       mkdir -p cutadapted/$experiment/$sample
       echo $(date)-${sample}:  "Running cutadapt" >>Karen_SeqAlig_log.txt
@@ -62,7 +63,14 @@ while IFS= read -r experiment; do
       if [ $status -eq 0 ]; then
           echo $(date)-${sample}:  "Successfully ran cutadapt" >>Karen_SeqAlig_log.txt
       else 
-        echo $(date)-${sample}:  "Error found on cutadapt. Skiping sample" >>Karen_SeqAlig_log.txt
+        echo $(date)-${sample}:  "Error found on cutadapt for sample $sample. Skiping sample" >>Karen_SeqAlig_log.txt
+        let COUNTER++
+        if [COUNTER>2]; then
+          echo $(date)-${sample}:  "Removing $sample fastq forlder." >>Karen_SeqAlig_log.txt
+          rm -r fastq/$experiment/$sample
+          echo $(date)-${sample}:  "Removing $sample cutadapt forlder." >>Karen_SeqAlig_log.txt
+          rm -r cutadapted/$experiment/$sample
+        fi
         continue
       fi
       
@@ -80,17 +88,25 @@ while IFS= read -r experiment; do
       echo $(date)-${sample}:  "Running kallisto" >>Karen_SeqAlig_log.txt
 
       mkdir -p outputKallisto/$experiment/$sample
-      singularity exec kallistito_0.1.sif kallisto quant -i reference/homo_sapiens/transcriptome.idx --pseudobam -o outputKallisto/$experiment/$sample/${sample} -t 12 cutadapted/$experiment/$sample/${sample}_1.fastq cutadapted/$experiment/$sample/${sample}_2.fastq --verbose | tee -a Kallisto_quant_${sample}.LOG 
+      singularity exec kallistito_0.1.sif kallisto quant -i reference/homo_sapiens/transcriptome.idx -o outputKallisto/$experiment/$sample/${sample} -t 12 cutadapted/$experiment/$sample/${sample}_1.fastq cutadapted/$experiment/$sample/${sample}_2.fastq --verbose | tee -a Kallisto_quant_${sample}.LOG 
       status=$?
       if [ $status -eq 0 ]; then
           echo $(date)-${sample}:  "Successfully ran Kallisto" >>Karen_SeqAlig_log.txt
       else 
-        echo $(date)-${sample}:  "Error found on Kallisto. Skiping sample" >>Karen_SeqAlig_log.txt
+        echo $(date)-${sample}:  "Error found on Kallisto. Skiping sample $sample" >>Karen_SeqAlig_log.txt
+        let COUNTER++
+        if [COUNTER>2]; then
+          echo $(date)-${sample}:  "Removing $sample fastq forlder." >>Karen_SeqAlig_log.txt
+          rm -r fastq/$experiment/$sample
+          echo $(date)-${sample}:  "Removing $sample cutadapt forlder." >>Karen_SeqAlig_log.txt
+          rm -r cutadapted/$experiment/$sample
+        fi
         continue
       fi
 
       rm -r fastq/$experiment/$sample
       rm -r cutadapted/$experiment/$sample
+
 
   done < $experiment_samples
   
