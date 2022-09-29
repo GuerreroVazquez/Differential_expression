@@ -4,7 +4,7 @@
 #SBATCH --mail-user=K.GuerreroVazquez1@nuigalway.ie     # Where to send mail  
 
 #SBATCH -p highmem
-#SBATCH -N 1 # Utilizar 1 nodo
+#SBATCH -N 2 # Utilizar 1 nodo
 #SBATCH -c 6 # Utilizar 6 nucleo
 #SBATCH --mem=0                         # Job memory request; all memory available
 #SBATCH --time=7-00:00:00               # Time limit hrs:min:sec
@@ -13,9 +13,8 @@
 #SBATCH -e KseqAlig."%j".err            # Error output to current dir
 
 
-samples_names="samples.txt"
 samples_folder="data"
-read -p "Enter rnaSeq_samples file: " file
+file="data/rnaSeq_samples_1.txt"
 experiments="$samples_folder/$file"
 echo $(date)-${sample}:  experiments >>Karen_SeqAlig_log.txt
 cd /data2/kGuerreroVazquez/diff_exp_adventure
