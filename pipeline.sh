@@ -13,8 +13,8 @@
 #SBATCH -e KseqAlig."%j".err            # Error output to current dir
 
 
-samples_folder="data"
-file="data/rnaSeq_samples_1.txt"
+samples_folder="data/"
+file="rnaSeq_samples_1.txt"
 experiments="$samples_folder/$file"
 echo $(date)-${sample}:  experiments >>Karen_SeqAlig_log.txt
 cd /data2/kGuerreroVazquez/diff_exp_adventure

@@ -1,0 +1,109 @@
+---
+title: "DIff Exp Analysis"
+author: "Karen"
+date: "2022-10-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r Install_libraries}
+library( DESeq2 )
+# library(ggplot2)
+library(tidyverse)
+library(tximport)
+```
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r Count_data}
+
+file="/home/karen/Documents/phd/DifferentialExpression/GSE152558/All_samples.csv"
+
+countData <- read.csv(file, header = TRUE)
+head(countData)
+```
+```{r Metadata}
+file="/home/karen/Documents/phd/DifferentialExpression/GSE152558/metadata.csv"
+
+metadata <- read.csv(file, header = TRUE)
+
+head(metadata)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+```{r}
+
+file = "/home/karen/Documents/phd/DifferentialExpression/GSE152558/gencode.v28.annotation.tx2gene.csv"
+
+tx2gene <- read.csv(file, header = TRUE)
+dir = "/home/karen/Documents/phd/DifferentialExpression/GSE152558/SRR12021926/"
+# files <- file.path(files=dir, type="kallisto", samples$run, "abundance.tsv")
+# names(files) <- paste0("sample", 1:6)
+files = c("/home/karen/Documents/phd/DifferentialExpression/GSE152558/SRR12021926/abundance.tsv", "/home/karen/Documents/phd/DifferentialExpression/GSE152558/SRR12021927/abundance.tsv",
+          "/home/karen/Documents/phd/DifferentialExpression/GSE152558/SRR12021928/abundance.tsv", "/home/karen/Documents/phd/DifferentialExpression/GSE152558/SRR12021929/abundance.tsv",
+          "/home/karen/Documents/phd/DifferentialExpression/GSE152558/SRR12021930/abundance.tsv")
+txi.kallisto.tsv <- tximport(files, type = "kallisto", tx2gene = tx2gene, ignoreAfterBar = TRUE)
+head(txi.kallisto.tsv$counts)
+```
+```{r Get Dseq, echo=FALSE}
+ 
+sampleTable <- data.frame(condition = factor(c("middle-aged","middle-aged","middle-aged","old (O)","old (O)")))
+
+rownames(sampleTable) <- colnames(txi.kallisto.tsv$counts)
+one = ncol(txi.kallisto.tsv$counts)
+two = nrow(sampleTable)
+
+dds <- DESeqDataSetFromTximport(txi= txi.kallisto.tsv, colData=sampleTable, ~condition)
+
+
+dds <- DESeq(dds)
+res <- results(dds)
+head(results(dds, tidy=TRUE))
+
+summary(res)
+
+res <- res[order(res$padj),]
+head(res)
+
+
+```
+```{r}
+summary(res)
+res <- res[order(res$padj),]
+top100= head(res[c("padj","baseMean")],100)
+top100
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r Plot_counts}
+par(mfrow=c(2,3))
+group = "middle-aged"
+
+for (gene_n in rownames(top100))
+{
+  plotCounts(dds, gene=gene_n)
+}
+
+
+
+```
+```{r VOlcano_plots}
+#reset par
+par(mfrow=c(1,1))
+# Make a basic volcano plot
+with(res, plot(log2FoldChange, -log10(pvalue), pch=20, main="Volcano plot", xlim=c(-3,3)))
+
+# Add colored points: blue if padj<0.01, red if log2FC>1 and padj<0.05)
+with(subset(res, padj<.01 ), points(log2FoldChange, -log10(pvalue), pch=20, col="blue"))
+with(subset(res, padj<.01 & abs(log2FoldChange)>2), points(log2FoldChange, -log10(pvalue), pch=20, col="red"))
+```
