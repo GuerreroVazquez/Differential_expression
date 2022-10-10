@@ -79,7 +79,8 @@ head(res)
 ```{r}
 summary(res)
 res <- res[order(res$padj),]
-top100= head(res[c("padj","baseMean")],100)
+top100= head(res[c("padj","log2FoldChange")],100)
+write.csv(top100, "top100_ex1.csv")
 top100
 ```
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
@@ -101,9 +102,22 @@ for (gene_n in rownames(top100))
 #reset par
 par(mfrow=c(1,1))
 # Make a basic volcano plot
-with(res, plot(log2FoldChange, -log10(pvalue), pch=20, main="Volcano plot", xlim=c(-3,3)))
+with(res, plot(log2FoldChange, -log10(padj), pch=20, main="Volcano plot", xlim=c(-3,3)))
 
 # Add colored points: blue if padj<0.01, red if log2FC>1 and padj<0.05)
-with(subset(res, padj<.01 ), points(log2FoldChange, -log10(pvalue), pch=20, col="blue"))
-with(subset(res, padj<.01 & abs(log2FoldChange)>2), points(log2FoldChange, -log10(pvalue), pch=20, col="red"))
+with(subset(res, padj<.1 ), points(log2FoldChange, -log10(padj), pch=20, col="blue"))
+with(subset(res, padj<.1 & abs(log2FoldChange)>1), points(log2FoldChange, -log10(padj), pch=20, col="red"))
 ```
+
+
+```{r PCA}
+#First we need to transform the raw count data
+#vst function will perform variance stabilizing transformation
+
+vsdata <- vst(dds, blind=FALSE)
+plotPCA(vsdata) #using the DESEQ2 plotPCA fxn we can
+```
+
+
+
+d
