@@ -24,6 +24,7 @@ module load java
 export PATH=$PATH:/data2/kGuerreroVazquez/diff_exp_adventure/sratoolkit.3.0.0-ubuntu64/bin
 COUNTER=0
 date -u
+pair_sequence = 1
  ## Get the experiment name
 while IFS= read -r experiment; do
   echo $(date)-${sample}:  "Extracting experiment $experiment" >>Karen_SeqAlig_log.txt
@@ -38,9 +39,10 @@ while IFS= read -r experiment; do
       if [ -e "${FILE[0]}" ]; then
           echo $(date)-${sample}: "$FILE already exist"
           FILE=fastq/$experiment/$sample/$sample
-          if [ -d "$FILE" ]; then
+          if [ -f "$FILE" ]; then
               echo "$FILE has wrong format. Changing it to fastq."
               mv $FILE $FILE.fastq
+              pair_sequence = 0
           fi
 
       else
@@ -53,14 +55,19 @@ while IFS= read -r experiment; do
          continue
         fi
       fi
-
       
       
       echo $(date)-${sample}:  "Running Fastqc" >>Karen_SeqAlig_log.txt
 
       mkdir -p fastqc/$experiment/$sample
-      FastQC/fastqc fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq --outdir=fastqc/$experiment/$sample
-      status=$?
+      if [ $pair_sequence -eq 1 ]; then
+        FastQC/fastqc fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq --outdir=fastqc/$experiment/$sample &
+        status=$?
+      else
+        FastQC/fastqc fastq/$experiment/$sample/${sample}.fastq --outdir=fastqc/$experiment/$sample & 
+        status=$?
+      fi
+
       if [ $status -eq 0 ]; then
           echo $(date)-${sample}:  "Successfully ran Fastqc" >>Karen_SeqAlig_log.txt
       else 
@@ -69,8 +76,16 @@ while IFS= read -r experiment; do
       
       mkdir -p cutadapted/$experiment/$sample
       echo $(date)-${sample}:  "Running cutadapt" >>Karen_SeqAlig_log.txt
-      cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq -o cutadapted/$experiment/$sample/${sample}_1.fastq -p cutadapted/$experiment/$sample/${sample}_2.fastq  >> cutadapt_${sample}.out 2> cutadapt_${sample}.err
-      status=$?
+
+
+      if [ $pair_sequence -eq 1 ]; then
+          cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq -o cutadapted/$experiment/$sample/${sample}_1.fastq -p cutadapted/$experiment/$sample/${sample}_2.fastq  >> cutadapt_${sample}.out 2> cutadapt_${sample}.err
+          status=$?
+      else 
+          cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA fastq/$experiment/$sample/${sample}.fastq -o cutadapted/$experiment/$sample/${sample}.fastq > cutadapt_${sample}.out 2> cutadapt_${sample}.err
+          status=$?
+      fi
+      
       if [ $status -eq 0 ]; then
           echo $(date)-${sample}:  "Successfully ran cutadapt" >>Karen_SeqAlig_log.txt
       else 
@@ -85,9 +100,17 @@ while IFS= read -r experiment; do
         continue
       fi
       
+
       echo $(date)-${sample}:  "Running Second Fastqc" >>Karen_SeqAlig_log.txt
-      FastQC/fastqc cutadapted/$experiment/$sample/${sample}_1_postClean.fastq cutadapted/$experiment/$sample/${sample}_2_postClean.fastq --outdir=fastqc/$experiment/$sample
-      status=$?
+       
+      if [ $pair_sequence -eq 1 ]; then
+        FastQC/fastqc cutadapted/$experiment/$sample/${sample}_1_postClean.fastq cutadapted/$experiment/$sample/${sample}_2_postClean.fastq --outdir=fastqc/$experiment/${sample}_pC &
+        status=$?
+      else
+        FastQC/fastqc cutadapted/$experiment/$sample/${sample}.fastq --outdir=fastqc/$experiment/${sample}_pC & 
+        status=$?
+      fi
+
       if [ $status -eq 0 ]; then
           echo $(date)-${sample}:  "Successfully ran Fastqc" >>Karen_SeqAlig_log.txt
       else 
@@ -99,8 +122,16 @@ while IFS= read -r experiment; do
       echo $(date)-${sample}:  "Running kallisto" >>Karen_SeqAlig_log.txt
 
       mkdir -p outputKallisto/$experiment/$sample
-      singularity exec kallistito_0.1.sif kallisto quant -i reference/homo_sapiens/transcriptome.idx -o outputKallisto/$experiment/$sample/${sample} -t 12 cutadapted/$experiment/$sample/${sample}_1.fastq cutadapted/$experiment/$sample/${sample}_2.fastq --verbose | tee -a Kallisto_quant_${sample}.LOG 
-      status=$?
+
+      if [ $pair_sequence -eq 1 ]; then
+        singularity exec kallistito_0.1.sif kallisto quant -i reference/homo_sapiens/transcriptome.idx -o outputKallisto/$experiment/$sample/${sample} -t 12 cutadapted/$experiment/$sample/${sample}_1.fastq cutadapted/$experiment/$sample/${sample}_2.fastq --verbose | tee -a Kallisto_quant_${sample}.LOG 
+        status=$?
+      else
+        singularity exec kallistito_0.1.sif kallisto quant -i reference/homo_sapiens/transcriptome.idx -o outputKallisto/$experiment/$sample/${sample} --single -l 130 -s 4 -t 12 cutadapted/$experiment/$sample/${sample}.fastq --verbose | tee -a Kallisto_quant_${sample}.LOG 
+        status=$?
+      fi
+
+      
       if [ $status -eq 0 ]; then
           echo $(date)-${sample}:  "Successfully ran Kallisto" >>Karen_SeqAlig_log.txt
       else 
