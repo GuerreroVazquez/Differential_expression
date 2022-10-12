@@ -34,15 +34,27 @@ while IFS= read -r experiment; do
       mkdir -p fastq/$experiment/$sample
 
       echo $(date)-${sample}:  "Running Fastq-dump" >>Karen_SeqAlig_log.txt
+      FILE=(fastq/$experiment/$sample/$sample*)
+      if [ -e "${FILE[0]}" ]; then
+          echo $(date)-${sample}: "$FILE already exist"
+          FILE=fastq/$experiment/$sample/$sample
+          if [ -d "$FILE" ]; then
+              echo "$FILE has wrong format. Changing it to fastq."
+              mv $FILE $FILE.fastq
+          fi
 
-      fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
-      status=$?
-      if [ $status -eq 0 ]; then
-         echo $(date)-${sample}:  "Successfully ran Fastq-dump" >>Karen_SeqAlig_log.txt
-      else 
-        echo $(date)-${sample}:  "Error found on Fastq-dump. Skiping sample" >>Karen_SeqAlig_log.txt
-       continue
+      else
+        fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
+        status=$?
+        if [ $status -eq 0 ]; then
+           echo $(date)-${sample}:  "Successfully ran Fastq-dump" >>Karen_SeqAlig_log.txt
+        else 
+          echo $(date)-${sample}:  "Error found on Fastq-dump. Skiping sample" >>Karen_SeqAlig_log.txt
+         continue
+        fi
       fi
+
+      
       
       echo $(date)-${sample}:  "Running Fastqc" >>Karen_SeqAlig_log.txt
 
