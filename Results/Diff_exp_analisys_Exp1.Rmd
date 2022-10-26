@@ -42,7 +42,7 @@ head(metadata)
 You can also embed plots, for example:
 ```{r}
 
-file = "/home/karen/Documents/phd/DifferentialExpression/GSE152558/gencode.v28.annotation.tx2gene.csv"
+file = "/home/karen/Documents/phd/DifferentialExpression/gencode.v28.annotation.tx2gene.csv"
 
 tx2gene <- read.csv(file, header = TRUE)
 dir = "/home/karen/Documents/phd/DifferentialExpression/GSE152558/SRR12021926/"
@@ -82,6 +82,17 @@ res <- res[order(res$padj),]
 top100= head(res[c("padj","log2FoldChange")],100)
 write.csv(top100, "top100_ex1.csv")
 top100
+
+
+
+
+adjPvalue_t=0.1
+no_na= na.omit(res)
+dif_exp = no_na[no_na$padj < adjPvalue_t,]
+expressed=rownames(dif_exp)
+no_expressed<- rownames(no_na)[!rownames(no_na) %in% expressed]
+write.csv(expressed, "def_expressed_GSE152558.csv")
+write.csv(no_expressed, "no_dif_expressed_GSE152558.csv")
 ```
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
