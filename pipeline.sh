@@ -38,14 +38,8 @@ while IFS= read -r experiment; do
       FILE=(fastq/$experiment/$sample/$sample*)
       if [ -e "${FILE[0]}" ]; then
           echo $(date)-${sample}: "$FILE already exist"
-          FILE=fastq/$experiment/$sample/$sample
-          if [ -f "$FILE" ]; then
-              echo "$FILE has wrong format. Changing it to fastq."
-              mv $FILE $FILE.fastq
-              pair_sequence = 0
-          fi
-
       else
+        echo $(date)-${sample}: "Downloading $FILE"
         fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
         status=$?
         if [ $status -eq 0 ]; then
@@ -54,6 +48,12 @@ while IFS= read -r experiment; do
           echo $(date)-${sample}:  "Error found on Fastq-dump. Skiping sample" >>Karen_SeqAlig_log.txt
          continue
         fi
+      fi
+      FILE=fastq/$experiment/$sample/$sample
+      if [ -f "$FILE" ]; then
+          echo "$FILE has wrong format. Changing it to fastq."
+          mv $FILE $FILE.fastq
+          pair_sequence = 0
       fi
       
       
