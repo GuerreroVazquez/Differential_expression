@@ -55,7 +55,7 @@ while IFS= read -r experiment; do
       if [ -f "$FILE" ]; then
           echo "$FILE has wrong format. Changing it to fastq."
           mv $FILE $FILE.fastq
-          pair_sequence = 0
+          pair_sequence=0
       fi
 
       echo $(date)-${sample}:  "The secuence found was ${pair_sequence}" >>Karen_SeqAlig_log.txt
