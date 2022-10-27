@@ -49,6 +49,8 @@ while IFS= read -r experiment; do
          continue
         fi
       fi
+
+
       FILE=fastq/$experiment/$sample/$sample
       if [ -f "$FILE" ]; then
           echo "$FILE has wrong format. Changing it to fastq."
@@ -79,9 +81,11 @@ while IFS= read -r experiment; do
 
 
       if [ $pair_sequence -eq 1 ]; then
+          echo $(date)-${sample}:  "Running cutadapt for pair end" >>Karen_SeqAlig_log.txt
           cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq -o cutadapted/$experiment/$sample/${sample}_1.fastq -p cutadapted/$experiment/$sample/${sample}_2.fastq  >> cutadapt_${sample}.out 2> cutadapt_${sample}.err
           status=$?
       else 
+          echo $(date)-${sample}:  "Running cutadapt for single end" >>Karen_SeqAlig_log.txt
           cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA fastq/$experiment/$sample/${sample}.fastq -o cutadapted/$experiment/$sample/${sample}.fastq > cutadapt_${sample}.out 2> cutadapt_${sample}.err
           status=$?
       fi
