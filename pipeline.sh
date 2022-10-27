@@ -57,7 +57,9 @@ while IFS= read -r experiment; do
           mv $FILE $FILE.fastq
           pair_sequence = 0
       fi
-      
+
+      echo $(date)-${sample}:  "The secuence found was ${pair_sequence}" >>Karen_SeqAlig_log.txt
+
       
       echo $(date)-${sample}:  "Running Fastqc" >>Karen_SeqAlig_log.txt
 
