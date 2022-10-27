@@ -24,7 +24,7 @@ module load java
 export PATH=$PATH:/data2/kGuerreroVazquez/diff_exp_adventure/sratoolkit.3.0.0-ubuntu64/bin
 COUNTER=0
 date -u
-pair_sequence = 1
+pair_sequence=1
  ## Get the experiment name
 while IFS= read -r experiment; do
   echo $(date)-${sample}:  "Extracting experiment $experiment" >>Karen_SeqAlig_log.txt
@@ -58,7 +58,7 @@ while IFS= read -r experiment; do
           pair_sequence=0
       fi
 
-      echo $(date)-${sample}:  "The secuence found was ${pair_sequence}" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "The secuence found was ${pair_sequence} end" >>Karen_SeqAlig_log.txt
 
       
       echo $(date)-${sample}:  "Running Fastqc" >>Karen_SeqAlig_log.txt
