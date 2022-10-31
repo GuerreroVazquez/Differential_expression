@@ -31,10 +31,11 @@ while IFS= read -r experiment; do
   experiment_samples="$samples_folder/$experiment.txt"
   mkdir -p $experiment
   while IFS= read -r sample; do
+      pair_sequence=1
       mkdir -p $experiment/$sample
       mkdir -p fastq/$experiment/$sample
 
-      echo $(date)-${sample}:  "Running Fastq-dump" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "Running Fastq-dump for ${sample}" >>Karen_SeqAlig_log.txt
       FILE=(fastq/$experiment/$sample/$sample*)
       if [ -e "${FILE[0]}" ]; then
           echo $(date)-${sample}: "$FILE already exist"
@@ -58,7 +59,7 @@ while IFS= read -r experiment; do
           pair_sequence=0
       fi
 
-      echo $(date)-${sample}:  "The secuence found was ${pair_sequence} end" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "The secuence found was ${pair_sequence+1} end(s)" >>Karen_SeqAlig_log.txt
 
       
       echo $(date)-${sample}:  "Running Fastqc" >>Karen_SeqAlig_log.txt
@@ -95,7 +96,7 @@ while IFS= read -r experiment; do
       if [ $status -eq 0 ]; then
           echo $(date)-${sample}:  "Successfully ran cutadapt" >>Karen_SeqAlig_log.txt
       else 
-        echo $(date)-${sample}:  "Error found on cutadapt for sample $sample. Skiping sample" >>Karen_SeqAlig_log.txt
+        echo $(date)-${sample}:  "Error found on cutadapt for sample $sample. Skiping sample. (Error number ${COUNTER})" >>Karen_SeqAlig_log.txt
         let COUNTER++
         if [COUNTER>2]; then
           echo $(date)-${sample}:  "Removing $sample fastq forlder." >>Karen_SeqAlig_log.txt
