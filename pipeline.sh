@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=Karen_SeqAligment    # Job name
+#SBATCH --job-name=TEST_SeqAligment    # Job name
 #SBATCH --mail-type=END,FAIL,ALL            # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=K.GuerreroVazquez1@nuigalway.ie     # Where to send mail  
 
@@ -26,7 +26,7 @@ COUNTER=0
 date -u
 pair_sequence=1
 done_counter=0
-max_simultaneous=20
+max_simultaneous=16
 
 run_sample(){
       pair_sequence=1
