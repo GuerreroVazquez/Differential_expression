@@ -14,9 +14,9 @@
 
 
 samples_folder="data/"
-file="rnaSeq_samples_1.txt"
+file="rnaSeq_test_samples_1.txt"
 experiments="$samples_folder/$file"
-echo $(date)-${sample}:  experiments >>Karen_SeqAlig_log.txt
+echo $(date)-${sample}:  experiments >>test_Karen_SeqAlig_log.txt
 cd /data2/kGuerreroVazquez/diff_exp_adventure
 source dea/bin/activate
 module load singularity
@@ -34,18 +34,18 @@ run_sample(){
       mkdir -p $experiment/$sample
       mkdir -p fastq/$experiment/$sample
 
-      echo $(date)-${sample}:  "Running Fastq-dump for ${sample}" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "Running Fastq-dump for ${sample}" >>test_Karen_SeqAlig_log.txt
       FILE=(fastq/$experiment/$sample/$sample*)
       if [ -e "${FILE[0]}" ]; then
           echo $(date)-${sample}: "$FILE already exist"
       else
         echo $(date)-${sample}: "Downloading $FILE"
-        timeout 3h fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
+        timeout 3s fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
         status=${PIPESTATUS[0]}
         if [ $status -eq 0 ]; then
-           echo $(date)-${sample}:  "Successfully ran Fastq-dump" >>Karen_SeqAlig_log.txt
+           echo $(date)-${sample}:  "Successfully ran Fastq-dump" >>test_Karen_SeqAlig_log.txt
         else 
-          echo $(date)-${sample}:  "Error found on Fastq-dump. Skiping sample" >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Error found on Fastq-dump. Skiping sample" >>test_Karen_SeqAlig_log.txt
          continue
         fi
       fi
@@ -58,10 +58,10 @@ run_sample(){
           pair_sequence=0
       fi
 
-      echo $(date)-${sample}:  "The secuence found was ${pair_sequence+1} end(s)" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "The secuence found was ${pair_sequence+1} end(s)" >>test_Karen_SeqAlig_log.txt
 
       
-      echo $(date)-${sample}:  "Running Fastqc" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "Running Fastqc" >>test_Karen_SeqAlig_log.txt
 
       mkdir -p fastqc/$experiment/$sample
       if [ $pair_sequence -eq 1 ]; then
@@ -73,41 +73,41 @@ run_sample(){
       fi
 
       if [ $status -eq 0 ]; then
-          echo $(date)-${sample}:  "Successfully ran Fastqc" >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Successfully ran Fastqc" >>test_Karen_SeqAlig_log.txt
       else 
-        echo $(date)-${sample}:  "Error found on Fastqc. Risking it..." >>Karen_SeqAlig_log.txt
+        echo $(date)-${sample}:  "Error found on Fastqc. Risking it..." >>test_Karen_SeqAlig_log.txt
       fi
       
       mkdir -p cutadapted/$experiment/$sample
-      echo $(date)-${sample}:  "Running cutadapt" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "Running cutadapt" >>test_Karen_SeqAlig_log.txt
 
 
       if [ $pair_sequence -eq 1 ]; then
-          echo $(date)-${sample}:  "Running cutadapt for pair end" >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Running cutadapt for pair end" >>test_Karen_SeqAlig_log.txt
           cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq -o cutadapted/$experiment/$sample/${sample}_1.fastq -p cutadapted/$experiment/$sample/${sample}_2.fastq  >> cutadapt_${sample}.out 2> cutadapt_${sample}.err
           status=$?
       else 
-          echo $(date)-${sample}:  "Running cutadapt for single end" >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Running cutadapt for single end" >>test_Karen_SeqAlig_log.txt
           cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA fastq/$experiment/$sample/${sample}.fastq -o cutadapted/$experiment/$sample/${sample}.fastq > cutadapt_${sample}.out 2> cutadapt_${sample}.err
           status=$?
       fi
       
       if [ $status -eq 0 ]; then
-          echo $(date)-${sample}:  "Successfully ran cutadapt" >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Successfully ran cutadapt" >>test_Karen_SeqAlig_log.txt
       else 
-        echo $(date)-${sample}:  "Error found on cutadapt for sample $sample. Skiping sample. (Error number ${COUNTER})" >>Karen_SeqAlig_log.txt
+        echo $(date)-${sample}:  "Error found on cutadapt for sample $sample. Skiping sample. (Error number ${COUNTER})" >>test_Karen_SeqAlig_log.txt
         let COUNTER++
         if [COUNTER>2]; then
-          echo $(date)-${sample}:  "Removing $sample fastq forlder." >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Removing $sample fastq forlder." >>test_Karen_SeqAlig_log.txt
           rm -r fastq/$experiment/$sample
-          echo $(date)-${sample}:  "Removing $sample cutadapt forlder." >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Removing $sample cutadapt forlder." >>test_Karen_SeqAlig_log.txt
           rm -r cutadapted/$experiment/$sample
         fi
         continue
       fi
       
 
-      echo $(date)-${sample}:  "Running Second Fastqc" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "Running Second Fastqc" >>test_Karen_SeqAlig_log.txt
        
       if [ $pair_sequence -eq 1 ]; then
         FastQC/fastqc cutadapted/$experiment/$sample/${sample}_1_postClean.fastq cutadapted/$experiment/$sample/${sample}_2_postClean.fastq --outdir=fastqc/$experiment/${sample}_pC &
@@ -118,14 +118,14 @@ run_sample(){
       fi
 
       if [ $status -eq 0 ]; then
-          echo $(date)-${sample}:  "Successfully ran Fastqc" >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Successfully ran Fastqc" >>test_Karen_SeqAlig_log.txt
       else 
-        echo $(date)-${sample}:  "Error found on second Fastq-dump. Skiping quality, trying without it" >>Karen_SeqAlig_log.txt
+        echo $(date)-${sample}:  "Error found on second Fastq-dump. Skiping quality, trying without it" >>test_Karen_SeqAlig_log.txt
         
       fi
 
       
-      echo $(date)-${sample}:  "Running kallisto" >>Karen_SeqAlig_log.txt
+      echo $(date)-${sample}:  "Running kallisto" >>test_Karen_SeqAlig_log.txt
 
       mkdir -p outputKallisto/$experiment/$sample
 
@@ -139,14 +139,14 @@ run_sample(){
 
       
       if [ $status -eq 0 ]; then
-          echo $(date)-${sample}:  "Successfully ran Kallisto" >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Successfully ran Kallisto" >>test_Karen_SeqAlig_log.txt
       else 
-        echo $(date)-${sample}:  "Error found on Kallisto. Skiping sample $sample" >>Karen_SeqAlig_log.txt
+        echo $(date)-${sample}:  "Error found on Kallisto. Skiping sample $sample" >>test_Karen_SeqAlig_log.txt
         let COUNTER++
         if [COUNTER>2]; then
-          echo $(date)-${sample}:  "Removing $sample fastq forlder." >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Removing $sample fastq forlder." >>test_Karen_SeqAlig_log.txt
           rm -r fastq/$experiment/$sample
-          echo $(date)-${sample}:  "Removing $sample cutadapt forlder." >>Karen_SeqAlig_log.txt
+          echo $(date)-${sample}:  "Removing $sample cutadapt forlder." >>test_Karen_SeqAlig_log.txt
           rm -r cutadapted/$experiment/$sample
         fi
         continue
@@ -157,11 +157,11 @@ run_sample(){
       ((running_counter--))
 }
 
-echo $(date)-:  "STARTING RUN OF PARALELL EVALUATION.\n Max simultaneous rums: $max_simultaneous" >>Karen_SeqAlig_log.txt
+echo $(date)-:  "STARTING RUN OF PARALELL EVALUATION.\n Max simultaneous rums: $max_simultaneous" >>test_Karen_SeqAlig_log.txt
             
  ## Get the experiment name
 while IFS= read -r experiment; do
-  echo $(date)-${sample}:  "Extracting experiment $experiment" >>Karen_SeqAlig_log.txt
+  echo $(date)-${sample}:  "Extracting experiment $experiment" >>test_Karen_SeqAlig_log.txt
   experiment_samples="$samples_folder/$experiment.txt"
   mkdir -p $experiment
   running_counter=0
@@ -172,8 +172,8 @@ while IFS= read -r experiment; do
           done 
       else
         while (( running_counter >= max_simultaneous )); then
-            echo $(date)-${sample_name}:  "Waiting to run  $sample_name due to $running_counter samples being processed right now." >>Karen_SeqAlig_log.txt
-            sleep 30m
+            echo $(date)-${sample_name}:  "Waiting to run  $sample_name due to $running_counter samples being processed right now." >>test_Karen_SeqAlig_log.txt
+            sleep 30s
         done
         do
             run_sample $sample_name &
