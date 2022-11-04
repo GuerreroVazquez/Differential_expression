@@ -25,13 +25,12 @@ export PATH=$PATH:/data2/kGuerreroVazquez/diff_exp_adventure/sratoolkit.3.0.0-ub
 COUNTER=0
 date -u
 pair_sequence=1
- ## Get the experiment name
-while IFS= read -r experiment; do
-  echo $(date)-${sample}:  "Extracting experiment $experiment" >>Karen_SeqAlig_log.txt
-  experiment_samples="$samples_folder/$experiment.txt"
-  mkdir -p $experiment
-  while IFS= read -r sample; do
+done_counter=0
+max_simultaneous=20
+
+run_sample(){
       pair_sequence=1
+      sample=${1}
       mkdir -p $experiment/$sample
       mkdir -p fastq/$experiment/$sample
 
@@ -41,8 +40,8 @@ while IFS= read -r experiment; do
           echo $(date)-${sample}: "$FILE already exist"
       else
         echo $(date)-${sample}: "Downloading $FILE"
-        fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
-        status=$?
+        timeout 3h fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
+        status=${PIPESTATUS[0]}
         if [ $status -eq 0 ]; then
            echo $(date)-${sample}:  "Successfully ran Fastq-dump" >>Karen_SeqAlig_log.txt
         else 
@@ -155,7 +154,35 @@ while IFS= read -r experiment; do
 
       rm -r fastq/$experiment/$sample
       rm -r cutadapted/$experiment/$sample
+      ((running_counter--))
+}
 
+echo $(date)-:  "STARTING RUN OF PARALELL EVALUATION.\n Max simultaneous rums: $max_simultaneous" >>Karen_SeqAlig_log.txt
+            
+ ## Get the experiment name
+while IFS= read -r experiment; do
+  echo $(date)-${sample}:  "Extracting experiment $experiment" >>Karen_SeqAlig_log.txt
+  experiment_samples="$samples_folder/$experiment.txt"
+  mkdir -p $experiment
+  running_counter=0
+  while IFS= read -r sample_name; do
+      if (( running_counter < max_simultaneous )); then
+          do
+            run_sample $sample_name &
+          done 
+      else
+        while (( running_counter >= max_simultaneous )); then
+            echo $(date)-${sample_name}:  "Waiting to run  $sample_name due to $running_counter samples being processed right now." >>Karen_SeqAlig_log.txt
+            sleep 30m
+        done
+        do
+            run_sample $sample_name &
+        done 
+          
+      fi
+      
+      ((running_counter++))
+      echo $(date): "$running_counter samples running"
 
   done < $experiment_samples
   
