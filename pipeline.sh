@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=TEST_SeqAligment    # Job name
+#SBATCH --job-name=SeqAligment    # Job name
 #SBATCH --mail-type=END,FAIL,ALL            # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=K.GuerreroVazquez1@nuigalway.ie     # Where to send mail  
 
@@ -14,7 +14,7 @@
 
 
 samples_folder="data/"
-file="rnaSeq_test_samples_1.txt"
+file="rnaSeq_samples_1.txt"
 experiments="$samples_folder/$file"
 echo $(date)-${sample}:  experiments >>test_Karen_SeqAlig_log.txt
 cd /data2/kGuerreroVazquez/diff_exp_adventure
@@ -26,7 +26,7 @@ COUNTER=0
 date -u
 pair_sequence=1
 done_counter=0
-max_simultaneous=16
+max_simultaneous=3
 
 run_sample(){
       pair_sequence=1
@@ -40,7 +40,7 @@ run_sample(){
           echo $(date)-${sample}: "$FILE already exist"
       else
         echo $(date)-${sample}: "Downloading $FILE"
-        timeout 3s fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
+        timeout 3h fasterq-dump $sample -o $sample -O fastq/$experiment/$sample -S --include-technical |tee -a fasterq-dump_$sample.LOG
         status=${PIPESTATUS[0]}
         if [ $status -eq 0 ]; then
            echo $(date)-${sample}:  "Successfully ran Fastq-dump" >>test_Karen_SeqAlig_log.txt
@@ -173,7 +173,7 @@ while IFS= read -r experiment; do
       else
         while (( running_counter >= max_simultaneous )); then
             echo $(date)-${sample_name}:  "Waiting to run  $sample_name due to $running_counter samples being processed right now." >>test_Karen_SeqAlig_log.txt
-            sleep 30s
+            sleep 30m
         done
         do
             run_sample $sample_name &
