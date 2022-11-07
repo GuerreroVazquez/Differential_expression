@@ -12,7 +12,7 @@ experiment = 'GSE164471'
 
 ## R Markdown
 
-```{r Install_libraries}
+```{r Install_libraries ,echo=FALSE}
 library( DESeq2 )
 # library(ggplot2)
 library(tidyverse)
@@ -23,14 +23,14 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r Count_data}
+```{r Count_data ,echo=FALSE}
 
 file=paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/All_samples.csv")
 
 countData <- read.csv(file, header = TRUE)
 head(countData)
 ```
-```{r Metadata}
+```{r Metadata, echo=FALSE}
 file=paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/metadata.csv")
 
 metadata <- read.csv(file, header = TRUE)
@@ -46,17 +46,19 @@ metadata$category
 ## Including Plots
 
 You can also embed plots, for example:
-```{r}
+```{r, echo=FALSE}
 dir = paste0("/home/karen/Documents/phd/DifferentialExpression/", experiment)
 samples <- list.files(dir, pattern=NULL, all.files=FALSE, full.names=FALSE)[-1]
-samples 
 
 files <- c()
 for (sample in samples)
 {
-  files <- append(x, paste0(dir,"/",sample,"/",sample,"/abundance.tsv"))  
+  if (sample != 'metadata.csv'){
+    files <- append(files,paste0(dir,"/",sample,"/",sample,"/abundance.tsv"))  
+  }
 }
-files
+head(files)
+tail(files)
 ```
 
 ```{r}
@@ -72,10 +74,12 @@ tx2gene <- read.csv(file, header = TRUE)
 txi.kallisto.tsv <- tximport(files, type = "kallisto", tx2gene = tx2gene, ignoreAfterBar = TRUE)
 head(txi.kallisto.tsv$counts)
 ```
+
+
 ```{r Get Dseq, echo=FALSE}
  
 
-sampleTable <- data.frame(condition = factor(metadata$category[1:26]))
+sampleTable <- data.frame(condition = factor(metadata$category[1:46]))
 
 rownames(sampleTable) <- colnames(txi.kallisto.tsv$counts)
 one = ncol(txi.kallisto.tsv$counts)

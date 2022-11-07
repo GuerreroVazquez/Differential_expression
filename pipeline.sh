@@ -158,7 +158,7 @@ run_sample(){
 }
 
 echo $(date)-:  "STARTING RUN OF PARALELL EVALUATION.\n Max simultaneous rums: $max_simultaneous" >>test_Karen_SeqAlig_log.txt
-            
+echo pwd  
  ## Get the experiment name
 while IFS= read -r experiment; do
   echo $(date)-${sample}:  "Extracting experiment $experiment" >>test_Karen_SeqAlig_log.txt
