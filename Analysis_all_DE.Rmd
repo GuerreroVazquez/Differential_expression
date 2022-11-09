@@ -1,0 +1,74 @@
+---
+title: "Analysis_all_DE"
+author: "Karen"
+date: "2022-11-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Here I am getting all the DE genes form the experiments and try to make sense of them. 
+
+```{r read the CVS }
+folder="DSeq"
+experiments <- list.files(folder, pattern=NULL, all.files=FALSE, full.names=FALSE)
+diff_exp_files <- c()
+no_diff_exp_files <- c()
+experiment_names <- c()
+files <- c()
+for (experiment in experiments)
+{
+  experiment_name = substr(experiment,1,9)
+  experiment_names <- append(experiment_names, experiment_name)
+  if (substr(experiment,10,11)=="no"){
+    
+      no_diff_exp_files <- append(no_diff_exp_files, paste0(folder,"/",experiment))
+  }
+  else
+  {
+    diff_exp_files <- append(diff_exp_files, paste0(folder,"/",experiment))
+  }
+}
+experiment_names <- unique(experiment_names)
+
+```
+How do I get data on a dataframe in R >:c
+
+```{r}
+all_data <- data.frame(exp_name =  experiment_names, diff_exp_file = diff_exp_files, no_diff_exp_file=no_diff_exp_files, diff_exp_genes=c(1,2,3), no_diff_exp_genes=c(1,2,3))
+
+gene_data <- data.frame()
+
+for (i in rownames(all_data))
+{
+  file = all_data[i, "diff_exp_file"]
+  genes <- read.csv(file, header = TRUE)
+ 
+  gene_data[all_data[i, "exp_name"]] <-genes[2]
+
+}
+
+
+```
+FORGET IT I did it manually
+\>:c
+
+
+
+```{r, echo=FALSE}
+ genes <- read.csv("DSeq/All_experiments_dE.csv", header = TRUE)
+
+df_a<- genes[1]
+df_b<-genes[2]
+merge(df_a, df_b)
+```
+
+
+
+
+
+
