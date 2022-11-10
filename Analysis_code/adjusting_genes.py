@@ -67,5 +67,5 @@ def get_gene_name_from_entrez(entrez_ids):
         gene_names.extend(name)
     return gene_names
 
-get_gene_name_from_entrez(['ENSG00000108861.8', 'ENST00000407559'])
+#get_gene_name_from_entrez(['ENST00000226004', 'ENST00000407559'])
 

@@ -1,10 +1,13 @@
 import csv
+import re
 from itertools import combinations
 
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib_venn import venn3
 from adjusting_genes import *
+import ensmbl_finder
+
 
 def get_data(all_experiments_de='../Results/DSeq/All_experiments_dE.csv'):
     """
@@ -34,7 +37,7 @@ def save_gene_intersections(all_experiments_de='../Results/DSeq/All_experiments_
     """
     df, experiment_names = get_data(all_experiments_de)
     u = {}
-    cardinalities={}
+    cardinalities = {}
     for j in range(2, len(experiment_names) + 1):
         for i in combinations(experiment_names, j):
             a = set(df[i[0]].dropna())
@@ -51,7 +54,7 @@ def save_gene_intersections(all_experiments_de='../Results/DSeq/All_experiments_
             u[key_name.replace("*", "u")] = list(union)
             cardinalities[key_name.replace("*", "n")] = len(inter)
             cardinalities[key_name.replace("*", "u")] = len(union)
-            if len(inter)==1:
+            if len(inter) == 1:
                 print(inter)
     # analysis = pd.DataFrame.from_dict(u)
     analysis = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in u.items()]))
@@ -60,7 +63,7 @@ def save_gene_intersections(all_experiments_de='../Results/DSeq/All_experiments_
     return cardinalities
 
 
-def print_venn(all_genes, names, output='../Results/DSeq/venn_diagram.png'):
+def print_venn(all_genes, names, output='../Results/DSeq/venn_diagram.png', ignore_version=True):
     """
     Makes a venn diagram of THREE sets
     :param all_genes:
@@ -68,15 +71,19 @@ def print_venn(all_genes, names, output='../Results/DSeq/venn_diagram.png'):
     :param output:
     :return:
     """
-
+    import re
     sets = []
     for set_name in names:
         gene_list = all_genes[set_name]
-        sets.append(set(gene_list.dropna()))
+        set_values = set(gene_list.dropna())
+        if ignore_version:
+            set_values = {re.sub('\..*$', '', x) for x in set_values}
+        sets.append(set_values)
     venn3(sets, names)
     plt.savefig(output)
 
-def transforme_2_genes(data, names):
+
+def transforme_2_genes(data, names, ignore_version=True):
     """
 
     :param data: pandas dataframe with the experiments and the transcripts
@@ -84,19 +91,29 @@ def transforme_2_genes(data, names):
     :return: dataframe  with the experiments and the genes
     """
     new_df = data
-    for name in names:
+    for name in names[1:]:
         transcripts = data[name]
-        gene_names=[]
-        for i in range(0, len(transcripts), 113):
-            gene_names.append( retrieve_annotation(list(transcripts[i:i+113]))  )
-        new_df[name]= gene_names
+        gene_names = []
+        for gene in transcripts:
+            if ignore_version:
+                try:
+                    gene = re.sub('\..*$', '', gene)
+                except:
+                    gene_names.append("NF")
+                    continue
+            gene_names.append(ensmbl_finder.get_gene_name_from_ensmbl(gene))
+        new_df[name] = gene_names
+        new_df.to_csv(f"{name}_gene_names.csv")
     return new_df
 
-if __name__ == '__main__':
+
+if __name__ == '__magin__':
     data, names = get_data()
-    transforme_2_genes(data, names)
+    #transforme_2_genes(data, names)
+
 if __name__ == '__main__':
-    # print(save_gene_intersections())
-    data, names = get_data()
-    print_venn(data, names)
+    print(save_gene_intersections(all_experiments_de='../Results/DSeq/All_dE_gene_names.csv',
+                            file_name='../Results/DSeq/intersection_union_gene_name.csv'))
+    data, names = get_data(all_experiments_de='../Results/DSeq/All_dE_gene_names.csv')
+    print_venn(data, names, output="test.png")
     pass
