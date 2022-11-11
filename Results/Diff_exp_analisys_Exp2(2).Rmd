@@ -7,8 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-experiment= 'GSE152558'
-experiment = 'GSE157585'
+experiment = 'GSE164471'
 
 ```
 
@@ -39,9 +38,11 @@ metadata <- read.csv(file, header = TRUE)
 
 #head(metadata)
 #metadata$Age
-young = 50
-metadata$category <- ifelse(metadata$Age > young,"Old", "Young")
+young = 35
+old = 65
+metadata$category <- ifelse(metadata$Age > old,"Old", ifelse(metadata$Age < young, "Young", "MA"))
 metadata$category
+eval_samples <- metadata  %>% filter(category!="MA")
 
 ```
 ## Including Plots
@@ -53,12 +54,24 @@ samples <- list.files(dir, pattern=NULL, all.files=FALSE, full.names=FALSE)[-1]
  
 
 files <- c()
+eval_files <-c()
+pair_metadata <-c()
 for (sample in samples)
 {
   if (sample != 'metadata.csv'){
-  files <- append(files, paste0(dir,"/",sample,"/",sample,"/abundance.tsv"))
+
+      files <- append(files, paste0(dir,"/",sample,"/",sample,"/abundance.tsv"))
+  }
+  if (sum(str_detect(eval_samples$Run, sample)) > 0) 
+  {
+      print(sample)
+      eval_files <- append(eval_files, paste0(dir,"/",sample,"/",sample,"/abundance.tsv"))
+      
+      pair_metadata <- append(pair_metadata, sample)
   }
 }
+eval_samples <- metadata  %>% filter(Run.isin(pair_metadata))
+
 
 ```
 
@@ -78,9 +91,9 @@ txi.kallisto.tsv <- tximport(files, type = "kallisto", tx2gene = tx2gene, ignore
 
 ```{r Get Dseq, echo=FALSE}
  
-avaible = length(files)
+avaible = length(eval_files)
 avaible
-sampleTable <- data.frame(condition = factor(metadata$category[1:avaible]))
+sampleTable <- data.frame(condition = factor(eval_samples$category[1:avaible]))
 
 rownames(sampleTable) <- colnames(txi.kallisto.tsv$counts)
 one = ncol(txi.kallisto.tsv$counts)
@@ -89,13 +102,15 @@ two = nrow(sampleTable)
 dds <- DESeqDataSetFromTximport(txi= txi.kallisto.tsv, colData=sampleTable, ~condition)
 
 
+
 dds <- DESeq(dds)
 res <- results(dds)
+something<-results(dds, contrast=c("condition","young","old") )
 head(results(dds, tidy=TRUE))
 
 summary(res)
 
-res <- res[order(res$padj),]
+something <- something[order(something$padj),]
 
 head(res)
 

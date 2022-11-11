@@ -107,9 +107,57 @@ def transforme_2_genes(data, names, ignore_version=True):
     return new_df
 
 
-if __name__ == '__magin__':
-    data, names = get_data()
+def convert_2_entrez(data, names, ignore_version=True):
+    """
+
+    :return:
+    """
+    new_df = data
+    for name in names[1:]:
+        transcripts = data[name]
+        gene_names_1 = []
+        for gene in transcripts:
+            if ignore_version:
+                try:
+                    gene_names_1.append( re.sub('\..*$', '', gene))
+                except:
+                    continue
+        gene_name = get_gene_name_from_entrez(gene_names_1)
+        new_df[name] = gene_name
+        new_df.to_csv(f"{name}_gene_entrez_names.csv")
+    return new_df
+
+
+def remove_version(data, names, diffexpres=True, ignore_version=True):
+    """
+
+    :return:
+    """
+    new_df = data
+    for name in names:
+        transcripts = data[name]
+        gene_names_1 = []
+        for gene in transcripts:
+                try:
+                    gene_names_1.append( re.sub('\..*$', '', gene))
+                except:
+                    gene_names_1.append("")
+                    continue
+        new_df[name] = gene_names_1
+    if diffexpres:
+        new_df.to_csv(f"gene_ensmbl_no_version_namesNDE.csv")
+    else:
+        new_df.to_csv(f"gene_ensmbl_no_version_namesDE.csv")
+    return new_df
+
+
+if __name__ == '__main__':
+    data, names = get_data(all_experiments_de='../Results/DSeq/All_experiments_NodE.csv')
     #transforme_2_genes(data, names)
+    remove_version(data,names, diffexpres=False)
+    data, names = get_data(all_experiments_de='../Results/DSeq/All_experiments_dE.csv')
+    # transforme_2_genes(data, names)
+    remove_version(data, names, diffexpres=True)
 
 if __name__ == '__main__':
     print(save_gene_intersections(all_experiments_de='../Results/DSeq/All_dE_gene_names.csv',
