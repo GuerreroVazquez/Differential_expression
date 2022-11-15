@@ -32,7 +32,7 @@ file
 # head(countData)
 ```
 ```{r Metadata}
-file=paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/metadata.csv")
+file=paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/metadata_filtered.csv")
 
 metadata <- read.csv(file, header = TRUE)
 
@@ -78,6 +78,11 @@ eval_samples <- metadata  %>% filter(Run.isin(pair_metadata))
 ```{r, ECHO=FALSE}
 
 file = paste("/home/karen/Documents/phd/DifferentialExpression/gencode.v28.annotation.tx2gene.csv")
+abundances_paths=paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/abundances.csv")
+df <- read.csv(abundances_paths, header = FALSE)
+files <- c()
+for( i in df[1]) 
+  files <- append(files, i)
 
 tx2gene <- read.csv(file, header = TRUE)
 
@@ -93,8 +98,8 @@ txi.kallisto.tsv <- tximport(files, type = "kallisto", tx2gene = tx2gene, ignore
  
 avaible = length(eval_files)
 avaible
-sampleTable <- data.frame(condition = factor(eval_samples$category[1:avaible]))
-
+# sampleTable <- data.frame(condition = factor(eval_samples$category[1:avaible]))
+sampleTable <- read.csv(paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/metadata_filtered.csv"), header = TRUE)
 rownames(sampleTable) <- colnames(txi.kallisto.tsv$counts)
 one = ncol(txi.kallisto.tsv$counts)
 two = nrow(sampleTable)
@@ -105,7 +110,6 @@ dds <- DESeqDataSetFromTximport(txi= txi.kallisto.tsv, colData=sampleTable, ~con
 
 dds <- DESeq(dds)
 res <- results(dds)
-something<-results(dds, contrast=c("condition","young","old") )
 head(results(dds, tidy=TRUE))
 
 summary(res)
