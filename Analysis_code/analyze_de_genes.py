@@ -66,8 +66,8 @@ def save_gene_intersections(all_experiments_de='../Results/DSeq/All_experiments_
 def print_venn(all_genes, names, output='../Results/DSeq/venn_diagram.png', ignore_version=True):
     """
     Makes a venn diagram of THREE sets
-    :param all_genes:
-    :param names:
+    :param all_genes: list of lists of str of all gene names
+    :param names: list (str) the names of the experiments
     :param output:
     :return:
     """
@@ -85,7 +85,8 @@ def print_venn(all_genes, names, output='../Results/DSeq/venn_diagram.png', igno
 
 def transforme_2_genes(data, names, ignore_version=True):
     """
-
+    If it is not empty, removes the version if true,
+    it will go to ensbml and find the gene name (display name)
     :param data: pandas dataframe with the experiments and the transcripts
     :param names: list of names of the experiments
     :return: dataframe  with the experiments and the genes
@@ -107,19 +108,21 @@ def transforme_2_genes(data, names, ignore_version=True):
     return new_df
 
 
-def convert_2_entrez(data, names, ignore_version=True):
+def convert_2_entrez(genes_data_frame, names, ignore_version=True):
     """
-
+    Gets the entrez number for TRANSCRIPTS
+    :param genes_data_frame:
+    :param names:
     :return:
     """
-    new_df = data
+    new_df = genes_data_frame
     for name in names[1:]:
-        transcripts = data[name]
+        transcripts = genes_data_frame[name]
         gene_names_1 = []
         for gene in transcripts:
             if ignore_version:
                 try:
-                    gene_names_1.append( re.sub('\..*$', '', gene))
+                    gene_names_1.append(re.sub('\..*$', '', gene))
                 except:
                     continue
         gene_name = get_gene_name_from_entrez(gene_names_1)
@@ -128,40 +131,46 @@ def convert_2_entrez(data, names, ignore_version=True):
     return new_df
 
 
-def remove_version(data, names, diffexpres=True, ignore_version=True):
+def remove_version(genes_data_frame, experiment_names, diff_express=True,
+                   output="gene_ensmbl_no_version_names"):
     """
+    Creates a new file with the same genes but without the version
+    :param genes_data_frame: The dataframe with the gene names
+    :param experiment_names:
+    :param diff_express: bool If the genes are diff express or not
+    :param output: The prefix of the name the output file will have
 
     :return:
     """
-    new_df = data
-    for name in names:
-        transcripts = data[name]
+    new_df = genes_data_frame
+    for name in experiment_names:
+        transcripts = genes_data_frame[name]
         gene_names_1 = []
         for gene in transcripts:
-                try:
-                    gene_names_1.append( re.sub('\..*$', '', gene))
-                except:
-                    gene_names_1.append("")
-                    continue
+            try:
+                gene_names_1.append(re.sub('\..*$', '', gene))
+            except:
+                gene_names_1.append("")
+                continue
         new_df[name] = gene_names_1
-    if diffexpres:
-        new_df.to_csv(f"gene_ensmbl_no_version_namesNDE.csv")
+    if diff_express:
+        new_df.to_csv(f"{output}NDE.csv")
     else:
-        new_df.to_csv(f"gene_ensmbl_no_version_namesDE.csv")
+        new_df.to_csv(f"{output}DE.csv")
     return new_df
 
 
 if __name__ == '__main__':
     data, names = get_data(all_experiments_de='../Results/DSeq/All_experiments_NodE.csv')
-    #transforme_2_genes(data, names)
-    remove_version(data,names, diffexpres=False)
+    # transforme_2_genes(data, names)
+    remove_version(data, names, diff_express=False)
     data, names = get_data(all_experiments_de='../Results/DSeq/All_experiments_dE.csv')
     # transforme_2_genes(data, names)
-    remove_version(data, names, diffexpres=True)
+    remove_version(data, names, diff_express=True)
 
 if __name__ == '__main__':
     print(save_gene_intersections(all_experiments_de='../Results/DSeq/All_dE_gene_names.csv',
-                            file_name='../Results/DSeq/intersection_union_gene_name.csv'))
+                                  file_name='../Results/DSeq/intersection_union_gene_name.csv'))
     data, names = get_data(all_experiments_de='../Results/DSeq/All_dE_gene_names.csv')
     print_venn(data, names, output="test.png")
     pass
