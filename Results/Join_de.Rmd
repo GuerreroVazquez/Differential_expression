@@ -50,8 +50,10 @@ library(ggpubr)
 
 samples <- read.csv(paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/metadata_filtered.csv"), header = TRUE)
 abundances_paths=paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/abundances.csv")
-files <- read.csv(abundances_paths, header = FALSE)
-
+df <- read.csv(abundances_paths, header = FALSE)
+files <- c()
+for( i in df[1]) 
+  files <- append(files, i)
 
 ```
 
