@@ -70,7 +70,6 @@ for (sample in samples)
       pair_metadata <- append(pair_metadata, sample)
   }
 }
-eval_samples <- metadata  %>% filter(Run.isin(pair_metadata))
 
 
 ```
@@ -89,37 +88,75 @@ tx2gene <- read.csv(file, header = TRUE)
 # files <- file.path(files=dir, type="kallisto", samples$run, "abundance.tsv")
 # names(files) <- paste0("sample", 1:6)
 
+files <- sort(files)
+txi.kallisto.tsv <- tximport(files, type = "kallisto", tx2gene = tx2gene, ignoreAfterBar = FALSE)
+head(txi.kallisto.tsv$counts)#[,1])
+```
 
-txi.kallisto.tsv <- tximport(files, type = "kallisto", tx2gene = tx2gene, ignoreAfterBar = TRUE)
-# head(txi.kallisto.tsv$counts)
+
+```{r}
+write.csv(txi.kallisto.tsv , paste0(experiment,"txi.csv"))
+```
+
+```{r}
+library(dplyr)
+df_txi <- as_tibble(txi.kallisto.tsv$counts[,1])
+df_txi$counts <- as.numeric(as.character(factor(df_txi$value)))
+df_txi$counts <- log10(df_txi$counts)
+ggplot(df_txi, aes(x=counts)) + geom_density()
+ggplot(df_txi, aes(x=value)) + geom_density()
 ```
 
 ```{r Get Dseq, echo=FALSE}
  
-avaible = length(eval_files)
-avaible
-# sampleTable <- data.frame(condition = factor(eval_samples$category[1:avaible]))
-sampleTable <- read.csv(paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/metadata_filtered.csv"), header = TRUE)
+eval_samples <- read.csv(paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/metadata_filtered.csv"), header = TRUE)
+eval_samples <-eval_samples[order(eval_samples$Run),]
+sampleTable <- data.frame(condition = factor(eval_samples$category))
+
 rownames(sampleTable) <- colnames(txi.kallisto.tsv$counts)
 one = ncol(txi.kallisto.tsv$counts)
 two = nrow(sampleTable)
 
-dds <- DESeqDataSetFromTximport(txi= txi.kallisto.tsv, colData=sampleTable, ~condition)
+dds <- DESeqDataSetFromTximport(txi= txi.kallisto.tsv, colData=sampleTable, design=~condition)
 
 
 
-dds <- DESeq(dds)
+dds <- DESeq(dds, test="Wald")
 res <- results(dds)
 head(results(dds, tidy=TRUE))
 
 summary(res)
 
-something <- something[order(something$padj),]
 
 head(res)
 
 
 ```
+
+
+
+
+
+```{R}
+df <- results(dds, tidy=T)
+df$abs_lfc <- abs(df$log2FoldChange)
+df$p_padj <- -log10(df$padj)
+
+ggplot(df, aes(x=abs_lfc, y=padj))+
+  geom_point()+
+  geom_vline(xintercept = 0.5)+
+  geom_hline(yintercept = 1)+
+  geom_hline(yintercept = 0.1, color="red")
+
+
+
+#expressed_genes <- df[df$padj < 1,]
+```
+```{r}
+dif_exp = df[df$padj < 0.01,]
+dim(dif_exp)
+```
+
 ```{r}
 summary(res)
 res <- res[order(res$padj),]
@@ -132,12 +169,16 @@ no_na= na.omit(res)
 dif_exp = no_na[no_na$padj < adjPvalue_t,]
 expressed=rownames(dif_exp)
 no_expressed<- rownames(no_na)[!rownames(no_na) %in% expressed]
-write.csv(expressed, paste0(experiment,"def_expressed.csv"))
+write.csv(dif_exp, paste0(experiment,"def_expressed.csv"))
 write.csv(no_expressed, paste0(experiment,"no_dif_expressed.csv"))
+
+length(dif_exp)
 
 ```
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
 
+```
 
 ```{r Plot_counts}
 par(mfrow=c(2,3))
@@ -167,10 +208,47 @@ with(subset(res, padj<.1 & abs(log2FoldChange)>1), points(log2FoldChange, -log10
 #vst function will perform variance stabilizing transformation
 
 vsdata <- vst(dds, blind=FALSE)
+dists <- dist(t(assay(vsdata)))
 plotPCA(vsdata) #using the DESEQ2 plotPCA fxn we can
 plotMA(dds)
 ```
 
+```{r}
+
+FC <- 1 # Fold-change cutoff
+FDR <- 0.1 # FDR cutoff
+alpha <- 0.1 # independent filtering, default
 
 
-d
+res <- DESeq2::results(dds, 
+  lfcThreshold = log2(FC),
+  altHypothesis = "greaterAbs",
+  independentFiltering = FALSE,
+  alpha = alpha
+)
+# Examine results 
+summary(res)
+plotMA(res)
+plotCounts(dds, gene = which.min(res$padj), intgroup = "condition")
+res <- subset(res, padj < FDR & abs(log2FoldChange) > log2(FC)) # Select
+table(sign(res$log2FoldChange)) # N. of genes Down, Up
+res <- res[order(-res$log2FoldChange), ] #sort
+head(res) #top upregulated
+tail(res) #top downregulated
+length(res)
+
+
+no_na= na.omit(res)
+write.csv(no_na, paste0(experiment,"def_expressed.csv"))
+
+all <- results(dds)
+no_na= na.omit(all)
+no_dif_exp = no_na[no_na$padj >= alpha,]
+no_dif_exp = no_dif_exp[abs(no_dif_explog2FoldChange) <= log2(FC),]
+expressed=rownames(dif_exp)
+no_expressed<- rownames(no_na)[!rownames(no_na) %in% expressed]
+write.csv(no_expressed, paste0(experiment,"no_def_expressed.csv"))
+
+```
+
+END
