@@ -130,5 +130,4 @@ plotPCA(vsdata) #using the DESEQ2 plotPCA fxn we can
 ```
 
 
-
-d
+END

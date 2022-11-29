@@ -8,7 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 experiment = 'GSE164471'
-
+experiment = 'GSE164471_MAvO'
+experiment = 'GSE164471_MAvY'
 ```
 
 ## R Markdown
@@ -24,13 +25,6 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r Count_data}
-
-file=paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/All_samples.csv")
-file
-# countData <- read.csv(file, header = TRUE)
-# head(countData)
-```
 ```{r Metadata}
 file=paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/metadata_filtered.csv")
 
@@ -95,7 +89,7 @@ head(txi.kallisto.tsv$counts)#[,1])
 
 
 ```{r}
-write.csv(txi.kallisto.tsv , paste0(experiment,"txi.csv"))
+write.csv(txi.kallisto.tsv , paste0(experiment,"_txi.csv"))
 ```
 
 ```{r}
@@ -138,15 +132,17 @@ head(res)
 
 
 ```{R}
+
 df <- results(dds, tidy=T)
+file_name = paste0(experiment,"_DDS.csv")
+write.csv(df, file = file_name )
 df$abs_lfc <- abs(df$log2FoldChange)
 df$p_padj <- -log10(df$padj)
 
 ggplot(df, aes(x=abs_lfc, y=padj))+
   geom_point()+
-  geom_vline(xintercept = 0.5)+
-  geom_hline(yintercept = 1)+
-  geom_hline(yintercept = 0.1, color="red")
+  geom_vline(xintercept = FC)+
+  geom_hline(yintercept = alpha, color="red")
 
 
 
@@ -160,9 +156,7 @@ dim(dif_exp)
 ```{r}
 summary(res)
 res <- res[order(res$padj),]
-top100= head(res[c("padj","log2FoldChange")],100)
-write.csv(top100, "top100_ex1.csv")
-top100
+
 
 adjPvalue_t=0.1
 no_na= na.omit(res)
@@ -219,23 +213,19 @@ FC <- 1 # Fold-change cutoff
 FDR <- 0.1 # FDR cutoff
 alpha <- 0.1 # independent filtering, default
 
-
-res <- DESeq2::results(dds, 
-  lfcThreshold = log2(FC),
-  altHypothesis = "greaterAbs",
-  independentFiltering = FALSE,
-  alpha = alpha
-)
 # Examine results 
 summary(res)
 plotMA(res)
 plotCounts(dds, gene = which.min(res$padj), intgroup = "condition")
-res <- subset(res, padj < FDR & abs(log2FoldChange) > log2(FC)) # Select
+res <- subset(res, padj < FDR)# & abs(log2FoldChange) > log2(FC)) # Select
 table(sign(res$log2FoldChange)) # N. of genes Down, Up
 res <- res[order(-res$log2FoldChange), ] #sort
 head(res) #top upregulated
 tail(res) #top downregulated
 length(res)
+```
+
+```{r}
 
 
 no_na= na.omit(res)
@@ -244,11 +234,80 @@ write.csv(no_na, paste0(experiment,"def_expressed.csv"))
 all <- results(dds)
 no_na= na.omit(all)
 no_dif_exp = no_na[no_na$padj >= alpha,]
-no_dif_exp = no_dif_exp[abs(no_dif_explog2FoldChange) <= log2(FC),]
-expressed=rownames(dif_exp)
-no_expressed<- rownames(no_na)[!rownames(no_na) %in% expressed]
-write.csv(no_expressed, paste0(experiment,"no_def_expressed.csv"))
+
 
 ```
+```{r PCA}
+#First we need to transform the raw count data
+#vst function will perform variance stabilizing transformation
 
-END
+vsdata <- vst(res, blind=FALSE)
+dists <- dist(t(assay(vsdata)))
+plotPCA(vsdata) #using the DESEQ2 plotPCA fxn we can
+plotMA(dds)
+```
+
+
+
+
+why is this not getting any?
+
+```{r}
+
+FC <- 1 # Fold-change cutoff
+FDR <- 0.1 # FDR cutoff
+alpha <- 0.1 # independent filtering, default
+# Comparison 1 of 1:  Old-Young
+
+#  Prepare data --------------------
+# Use the "Converted counts" button in the Pre-Process tab
+# to download the filtered counts file with gene IDs converted to Ensembl.
+raw_counts = read.csv("converted_counts_data.csv")
+row.names(raw_counts) <- raw_counts$User_ID
+raw_counts <- raw_counts[, -(1:3)] # delete 3 columns of IDs
+str(raw_counts)
+
+col_data <- data.frame(
+  "sample" = c("Young_1", "Young_2", "Young_3", "Young_4", "Young_5", "Young_6", "Young_7", "Young_8", "Young_9", "Young_10", "Young_11", "Young_12", "Old_1", "Old_2", "Old_3", "Old_4", "Old_5", "Old_6", "Old_7", "Old_8", "Old_9", "Old_10", "Old_11"),
+  "groups" = c("Young", "Young", "Young", "Young", "Young", "Young", "Young", "Young", "Young", "Young", "Young", "Young", "Old", "Old", "Old", "Old", "Old", "Old", "Old", "Old", "Old", "Old", "Old")
+)
+
+# Run DESeq2--------------------
+dds_2 <- DESeq2::DESeqDataSetFromMatrix(
+  countData = raw_counts,
+  colData = col_data,
+  design = ~groups
+)
+dds_2 <- DESeq2::DESeq(dds_2)
+
+# Extract results--------------------
+
+# Comparison 1 of 1:  Old-Young
+res <- DESeq2::results(dds_2, 
+  lfcThreshold = log2(FC),
+  altHypothesis = "greaterAbs",
+  independentFiltering = FALSE,
+  alpha = alpha
+)
+# Examine results 
+summary(res)
+
+plotMA(res)
+
+res <- subset(res, padj < FDR & abs(log2FoldChange) > log2(FC)) # Select
+table(sign(res$log2FoldChange)) # N. of genes Down, Up
+res <- res[order(-res$log2FoldChange), ] #sort
+head(res) #top upregulated
+tail(res) #top downregulated
+
+
+df <- results(dds_2, tidy=T)
+df$abs_lfc <- abs(df$log2FoldChange)
+df$p_padj <- -log10(df$padj)
+
+ggplot(df, aes(x=abs_lfc, y=padj))+
+  geom_point()+
+  geom_vline(xintercept = 0.5)+
+  geom_hline(yintercept = 1)+
+  geom_hline(yintercept = 0.1, color="red")
+```

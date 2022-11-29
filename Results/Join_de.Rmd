@@ -93,20 +93,36 @@ txi <- tximport(files, type = "kallisto", tx2gene = tx2gene)
 DESeq2 creates a DDS object for the analysis that contains metadata (colData), counts further information that can be obtained via dds@.
 ```{R}
 # make sure sample groups + replicates are factors
-samples$replicate <- as.factor(samples$replicate)
-samples$condition <- as.factor(samples$condition)
+samples$condition <- as.factor(samples$Age)
+
 
 # ~ replicate + condition
 ## control for replicate variation while contrasting conditions of interest
-dds <- DESeqDataSetFromTximport(txi, colData = samples, design = ~ replicate + condition )
+dds <- DESeqDataSetFromTximport(txi, colData = samples, design = ~ condition )
 
 # make control the reference level to compare against
-dds$condition <- relevel(dds$condition, ref = "control") 
+#dds$condition <- relevel(dds$condition, ref = "Age") 
 
 # create object
 dds <- DESeq(dds) 
+head(results(dds, tidy=TRUE))
+
+df <- results(dds, tidy=T)
+
 ```
 
+```{R}
+
+df$abs_lfc <- abs(df$log2FoldChange)
+df$p_padj <- -log10(df$padj)
+
+ggplot(df, aes(x=abs_lfc, y=p_padj))+
+  geom_point()+
+  geom_vline(xintercept = 0.5)+
+  geom_hline(yintercept = 1)+
+  geom_hline(yintercept = 2, color="red")
+
+```
 # Save normalized counts + log2 counts for data viz
 ```{R}
 counts <- counts(dds, normalized=TRUE)
@@ -154,11 +170,14 @@ The melanoma samples overlap with the control samples in PC1/PC2. Make the effor
 
 PCA can give you a good idea of how succesful the Differential Expression analysis will be - samples that are very close together in PC feature space will not produce as many DE genes as those that are separated by a large distance.
 ```{R, warning=F, message=F}
+
+
+colnames(log2) = rownames(metadata)
 p <- pca(log2, metadata = samples)
 
 biplot(p,
        colby = 'condition', 
-       colkey = c('melanoma'='royalblue', 'control'='red1', 'lung'='forestgreen'),
+       colkey = NULL,
        hline = 0, 
        vline = 0,
        legendPosition = 'right', 
@@ -172,7 +191,7 @@ biplot(p,
        x = "PC2",
        y = "PC4",
        colby = 'condition', 
-       colkey = c('melanoma'='royalblue', 'control'='red1', 'lung'='forestgreen'),
+       colkey = NULL,
        hline = 0, 
        vline = 0,
        legendPosition = 'right', 

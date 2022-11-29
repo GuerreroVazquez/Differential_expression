@@ -7,6 +7,8 @@ import pandas as pd
 
 master_path = "/home/karen/Documents/phd/DifferentialExpression/"
 
+experiments = ["GSE152558", "GSE157585", "GSE164471", "GSE164471_MAvO", "GSE164471_MAvY"]
+
 
 def metadata_file(experiment):
     """
@@ -31,9 +33,6 @@ def assign_age_group(metadata_path):
     df_metadata.to_csv(metadata_path, index=False)
 
 
-experiments = ["GSE152558", "GSE157585", "GSE164471"]
-
-
 def set_category_all():
     for experiment in experiments:
         metadata_path = metadata_file(experiment)
@@ -41,6 +40,13 @@ def set_category_all():
 
 
 def filter_metadata(metadata_path, filered_list, output=None):
+    """
+    Takes the metadata path and a list to be filtered and save it in output
+    :param metadata_path:
+    :param filered_list:
+    :param output:
+    :return:
+    """
     if output is None:
         output = f"{metadata_path[:-4]}_filtered.csv"
     df_metadata = pd.read_csv(metadata_path)
@@ -49,6 +55,12 @@ def filter_metadata(metadata_path, filered_list, output=None):
 
 
 def filter_all(experiments):
+    """
+    This function takes all the experiments and filter only fot the values that exist in the folder.
+
+    :param experiments:
+    :return:
+    """
     for experiment in experiments:
         metadata_path = metadata_file(experiment)
         filtered_list = get_existent_samples(experiment)
@@ -63,6 +75,10 @@ def get_filter_by_age(metadata_path, ages=["Young", "Old"]):
 
 
 def remove_ma_on_71():
+    """
+    This function removes the middle age samples
+    :return:
+    """
     metadata_path = f"{metadata_file(experiments[2])[:-4]}_filtered.csv"
     only_young_old = get_filter_by_age(metadata_path)
     filter_metadata(metadata_path, only_young_old, metadata_path)
@@ -84,9 +100,53 @@ def save_path_list(path_list, experiment, output=None):
         f.writelines(n_names)
 
 
-metadata_path = f"{metadata_file(experiments[2])[:-4]}_filtered.csv"
-existent = get_existent_samples(experiment=experiments[2])
-age_range = get_filter_by_age(metadata_path)
-existent_and_age_range = set(existent).intersection(set(age_range))
-paths = get_path_list(list(existent_and_age_range), experiment=experiments[2])
-save_path_list(path_list=paths, experiment=experiments[2])
+def test_24_nov_22_experiment1():
+    """
+    I just ran this to have the same format as the other experiments,
+    I had to filter MiddleAge and Old becasue this one do not have young
+    :return:
+    """
+    metadata_path = f"{metadata_file(experiments[0])[:-4]}_filtered.csv"
+    existent = get_existent_samples(experiment=experiments[0])
+    age_range = get_filter_by_age(metadata_path, ages=["MiddleAge", "Old"])
+    existent_and_age_range = set(existent).intersection(set(age_range))
+    paths = get_path_list(list(existent_and_age_range), experiment=experiments[0])
+    save_path_list(path_list=paths, experiment=experiments[0])
+
+
+def test_24_nov_22_experiment3():
+    """
+    Experimet that ends with 71 is young, old and MA,
+    so I did the process for Old and Young, now i do it for MA and old
+    :return:
+    """
+    experiment_number = 3
+    metadata_path = metadata_file(experiments[experiment_number])
+    filtered_list = get_existent_samples(experiments[experiment_number])
+    filter_metadata(metadata_path=metadata_path, filered_list=filtered_list)
+    metadata_path = f"{metadata_file(experiments[experiment_number])[:-4]}_filtered.csv"
+    existent = get_existent_samples(experiment=experiments[3])
+    age_range = get_filter_by_age(metadata_path, ages=["MiddleAge", "Young"])
+    existent_and_age_range = set(existent).intersection(set(age_range))
+    paths = get_path_list(list(existent_and_age_range), experiment=experiments[experiment_number])
+    save_path_list(path_list=paths, experiment=experiments[experiment_number])
+    filter_metadata(metadata_path=metadata_path, filered_list=existent_and_age_range, output=metadata_path)
+
+
+def test_24_nov_22_experiment4():
+    """
+    Experimet that ends with 71 is young, old and MA,
+    so I did the process for Old and Young, now i do it for MA and old
+    :return:
+    """
+    experiment_number = 4
+    metadata_path = metadata_file(experiments[experiment_number])
+    filtered_list = get_existent_samples(experiments[experiment_number])
+    filter_metadata(metadata_path=metadata_path, filered_list=filtered_list)
+    metadata_path = f"{metadata_file(experiments[experiment_number])[:-4]}_filtered.csv"
+    existent = get_existent_samples(experiment=experiments[3])
+    age_range = get_filter_by_age(metadata_path, ages=["MiddleAge", "Old"])
+    existent_and_age_range = set(existent).intersection(set(age_range))
+    paths = get_path_list(list(existent_and_age_range), experiment=experiments[experiment_number])
+    save_path_list(path_list=paths, experiment=experiments[experiment_number])
+    filter_metadata(metadata_path=metadata_path, filered_list=existent_and_age_range, output=metadata_path)

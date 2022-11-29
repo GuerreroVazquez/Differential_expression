@@ -53,7 +53,7 @@ samples <- list.files(dir, pattern=NULL, all.files=FALSE, full.names=FALSE)[-1]
 files <- c()
 for (sample in samples)
 {
-  if (sample != 'metadata.csv'){
+  if (sample != 'metadata.csv' & sample != 'All_samples.csv' & sample != 'metadata_filtered.csv'){
     files <- append(files,paste0(dir,"/",sample,"/",sample,"/abundance.tsv"))  
   }
 }
@@ -100,12 +100,38 @@ head(res)
 
 
 ```
+
+```{R}
+df <- results(dds, tidy=T)
+file_name = paste0(experiment,"_DDS.csv")
+write.csv(df, file = file_name )
+df$abs_lfc <- abs(df$log2FoldChange)
+df$p_padj <- -log10(df$padj)
+
+ggplot(df, aes(x=abs_lfc, y=padj))+
+  geom_point()+
+  geom_vline(xintercept = 0.5)+
+  geom_hline(yintercept = 1)+
+  geom_hline(yintercept = 0.05, color="red")
+
+
+
+#expressed_genes <- df[df$padj < 1,]
+```
+
+
+```{r}
+library(dplyr)
+df_txi <- as_tibble(txi.kallisto.tsv$counts[,1])
+df_txi$counts <- as.numeric(as.character(factor(df_txi$value)))
+df_txi$counts <- log10(df_txi$counts)
+ggplot(df_txi, aes(x=counts)) + geom_density()
+ggplot(df_txi, aes(x=value)) + geom_density()
+```
+
 ```{r}
 summary(res)
 res <- res[order(res$padj),]
-top100= head(res[c("padj","log2FoldChange")],100)
-write.csv(top100, "top100_ex1.csv")
-top100
 
 adjPvalue_t=0.1
 no_na= na.omit(res)
