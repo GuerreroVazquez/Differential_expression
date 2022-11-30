@@ -54,10 +54,11 @@ def get_entrez_ids_from_ensembl(ensembl_ids=None):
         entrez_ids.append(entrez_id)
     return entrez_ids
 
+
 def get_gene_name_from_entrez(entrez_ids):
-    gene_names=[]
-    for i in range(0,len(entrez_ids),100):
-        tmp_list = entrez_ids[i:i+100]
+    gene_names = []
+    for i in range(0, len(entrez_ids), 100):
+        tmp_list = entrez_ids[i:i + 100]
         entrez_ids = get_entrez_ids_from_ensembl(tmp_list)
         x = retrieve_annotation(entrez_ids)
         y = x['DocumentSummarySet']
@@ -67,5 +68,4 @@ def get_gene_name_from_entrez(entrez_ids):
         gene_names.extend(name)
     return gene_names
 
-#get_gene_name_from_entrez(['ENST00000226004', 'ENST00000407559'])
-
+# get_gene_name_from_entrez(['ENST00000226004', 'ENST00000407559'])
