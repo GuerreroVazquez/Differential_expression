@@ -7,7 +7,7 @@ from pyensembl import genome_for_reference_name
 # gene_name = human.transcript_by_id("ENSG00000235205")
 # print(gene_name)
 
-from PyEntrezId import Conversion  # got it from https://github.com/lwgray/pyEntrezId
+from Analysis_code.PyEntrezId import Conversion  # got it from https://github.com/lwgray/pyEntrezId
 
 import sys
 

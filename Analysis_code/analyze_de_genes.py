@@ -6,8 +6,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib_venn import venn3
-from adjusting_genes import *
-import ensmbl_finder
+from Analysis_code.adjusting_genes import *
+import Analysis_code.ensmbl_finder
 import seaborn as sns
 
 def get_data(all_experiments_de='../Results/DSeq/All_experiments_dE.csv'):
@@ -167,10 +167,11 @@ def remove_version(genes_data_frame, experiment_names, diff_express=True,
         transcripts = genes_data_frame[name]
         gene_names_1 = remove_version_from_list(transcripts)
         new_df[name] = gene_names_1
-    if diff_express:
-        new_df.to_csv(f"{output}NDE.csv")
-    else:
-        new_df.to_csv(f"{output}DE.csv")
+    if output:
+        if diff_express:
+            new_df.to_csv(f"{output}NDE.csv")
+        else:
+            new_df.to_csv(f"{output}DE.csv")
     return new_df
 
 
