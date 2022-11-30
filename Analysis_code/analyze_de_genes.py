@@ -1,7 +1,7 @@
 import csv
 import re
 from itertools import combinations
-from wordcloud import WordCloud, STOPWORDS
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -299,39 +299,7 @@ def test_24_nov_22_venn_oldvsyoung():
     labels = ["GSE157585", 'GSE164471']
     print_venn(data, names, output="OldvsYoung_no_versions.png", alias= labels)
     pass
-def get_wordcloud(df, title):
-    comment_words = ''
-    stopwords = set(STOPWORDS)
 
-    # iterate through the csv file
-    for val in df.Term:
-
-        # typecaste each val to string
-        val = str(val)
-
-        # split the value
-        tokens = val.split()
-
-        # Converts each token into lowercase
-        for i in range(len(tokens)):
-            tokens[i] = tokens[i].lower()
-
-        comment_words += " ".join(tokens)+" "
-    comment_words = comment_words.replace("go","")
-    comment_words = comment_words.replace("hsa","")
-    wordcloud = WordCloud(width = 800, height = 800,
-                    background_color ='white',
-                    stopwords = stopwords,
-                    min_font_size = 10).generate(comment_words)
-
-    # plot the WordCloud image
-    plt.figure(figsize = (8, 8), facecolor = None)
-    plt.imshow(wordcloud)
-    plt.axis("off")
-    plt.tight_layout(pad = 0)
-    plt.title(title)
-
-    plt.show()
 def test_24_nov_22_venn_oldvsyoung():
     """
     GSE157585  and GSE164471 have genes in common
