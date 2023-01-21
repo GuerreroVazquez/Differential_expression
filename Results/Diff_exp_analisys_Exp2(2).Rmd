@@ -8,8 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 experiment = 'GSE164471'
-experiment = 'GSE164471_MAvO'
-experiment = 'GSE164471_MAvY'
+#experiment = 'GSE164471_MAvO'
+#experiment = 'GSE164471_MAvY'
 ```
 
 ## R Markdown

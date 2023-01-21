@@ -63,8 +63,6 @@ def get_pathways(genes_file='../../Results/def_expressed_gene_names.csv', sel_da
     df_results = pd.DataFrame()
     df = a_g.remove_version(genes_data_frame=df, experiment_names=names, output=None)
 
-    sel_databases_names
-
     for experiment in names:
         DEGs = df[experiment].tolist()
         DEGs = [x for x in DEGs if pd.notnull(x)]
@@ -83,6 +81,9 @@ def get_pathways(genes_file='../../Results/def_expressed_gene_names.csv', sel_da
                 print(f"Error", e)
         experiment_dic["Experiment"] = experiment
         df_results = pd.concat([df_results, experiment_dic])
+    df_results.rename(columns={'P-value': 'PValue'}, inplace=True)
+    df_results.rename(columns={'Adjusted P-value': 'APValue'}, inplace=True)
+
     return df_results
 
 
@@ -112,15 +113,34 @@ def get_wordcloud(df, title):
                           min_word_length=2,
                           min_font_size=10).generate(comment_words)
     # plot the WordCloud image
-    plt.figure(figsize=(8, 8), facecolor=None)
-    plt.imshow(wordcloud)
-    plt.axis("off")
-    plt.tight_layout(pad=0)
-    plt.title(title)
+    if len(wordcloud.words_) > 1:
+        plt.figure(figsize=(8, 8), facecolor=None)
+        plt.imshow(wordcloud)
+        plt.axis("off")
+        plt.tight_layout(pad=0)
+        plt.title(title)
 
-    plt.show()
-    plt.savefig(f"Wordcloud_{title}")
+        plt.show()
+        plt.savefig(f"Wordcloud_{title}")
     return wordcloud.words_
+
+
+def plot_pathways(df, experiments=None):
+    """
+    Gets the dataframe with all the pawthays
+     data from all the experiments and makes the ploting by experiment
+    :param df: output of gseaspy
+    :return:
+    """
+    if experiments is None:
+        experiments = ["GSE152558", "GSE157585", "GSE164471",
+                       "GSE164471_MvYoung", "GSE164471_MvOld"]
+    by_experiment = []
+    for experiment in experiments:
+        by_experiment.append(df.query(f"Experiment == '{experiment}'"))
+    for i, df in enumerate(by_experiment):
+        barplot(df, title=experiments[i], cutoff=0.05, color='r')
+        barplot(df, column='invRatio', title=experiments[i], cutoff=-0.033, color='b')
 
 
 def test_get_pathways():
@@ -137,35 +157,70 @@ def test_get_pathways():
     print(result)
 
 
-def chicharron(diff_expression=default_pathway_file, pvalue_threshold=0.1, apvlue_threshold=1, ratio_treshold=0):
+def filter_pathways(df=None, diff_expression=default_pathway_file, pvalue_threshold=0.1, apvalue_threshold=1,
+                    ratio_treshold=0):
     """
     This function will get the csv of the pathways generated previously and get the patways that
     have a criteria of pvalue, adjusted pvalue and ratio
-    :param apvlue_threshold: float Threshold that marks up to which value to take the adjusted P value
+    :param df: dataframe The dataframe output from the gseapy
+    :param apvalue_threshold: float Threshold that marks up to which value to take the adjusted P value
     :param pvalue_threshold:  float Threshold that marks up to which value to take the P value
     :param ratio_treshold: float What is the minimun ratio (genes found/ genes total in pathway)
     :param diff_expression: str the CSV file that holds the output of gseapy
 
-    :return:
+    :return: dataframe with the filters applied
     """
-    df = pd.read_csv(diff_expression)
+    if df is None and diff_expression is not None:
+        df = pd.read_csv(diff_expression)
 
     ratio = [int(x.split('/')[0]) / int(x.split('/')[1]) for x in df['Overlap']]
     df['Ratio'] = ratio
-    df = df.query(f"Pvalue < {pvalue_threshold}")
-    df = df.query(f"Pvalue < {pvalue_threshold}")
+    df = df.query(f"PValue < {pvalue_threshold}")
+    df = df.query(f"APValue < {apvalue_threshold}")
+    df = df.query(f"Ratio > {ratio_treshold}")
     return df
 
 
 def test_chicharron():
-    chicharron()
+    filter_pathways()
 
 
 def test_get_wordcloud():
-    df = chicharron()
+    df = filter_pathways()
     by_experiment = []
     experiments = ["GSE152558", "GSE157585", "GSE164471",
                    "GSE164471_MvYoung", "GSE164471_MvOld"]
     experiment = experiments[3]
     df = df.query(f"Experiment == '{experiment}'")
     words = get_wordcloud(df, experiment)
+
+
+def test_dec5_getting_pathways_up_down():
+    """
+    This is ran in order to get the same patways and wordclouds but separating on up and down
+    regulated
+    :return:
+    """
+
+    #up_down_file = '../../Results/up_regulated_all.csv'
+    #pathways = get_pathways(genes_file=up_down_file)
+    #pathways.to_csv('../../Results/Pathway_A_def_expressed_gene_names_UP_DOWN.csv', index=False)
+    pathways = filter_pathways(df='../../Results/Pathway_A_def_expressed_gene_names_UP_DOWN.csv', pvalue_threshold=0.1, apvalue_threshold=0.1, ratio_treshold=0)
+    experiments = ["GSE152558", "GSE157585", "GSE164471",
+                   "GSE164471_MvYoung", "GSE164471_MvOld"]
+    for experiment in experiments:
+        df = df.query(f"Experiment == '{experiment}'")
+        words = get_wordcloud(df, experiment)
+
+
+def test_dec9_Tony_pathways():
+    """
+    This is ran in order to get the same patways and wordclouds but separating on up and down
+    regulated
+    :return:
+    """
+
+    up_down_file = '../../Tony.csv'
+    pathways = get_pathways(genes_file=up_down_file, sel_databases_names=databases_names)
+    pathways.to_csv('../../Results/Pathway_A_def_expressed_gene_names_Tony_all_db.csv', index=False)
+

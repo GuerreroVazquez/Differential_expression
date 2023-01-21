@@ -24,6 +24,7 @@ def get_gene_name_from_ensmbl(gene_id="ENSG00000108861"):
         display_name =  x.get("display_name")
         if display_name is None:
             return 'NF'
-    except:
+    except Exception as e:
+        print(e)
         display_name="E"
     return display_name

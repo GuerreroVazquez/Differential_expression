@@ -129,7 +129,6 @@ def transforme_2_genes(data, names, ignore_version=True):
     new_df.to_csv(f"{name}_gene_names.csv")
     return new_df
 
-
 def convert_2_entrez(genes_data_frame, names, ignore_version=True):
     """
     Gets the entrez number for TRANSCRIPTS
