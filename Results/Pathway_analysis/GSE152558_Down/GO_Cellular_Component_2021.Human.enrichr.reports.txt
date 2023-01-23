@@ -1,0 +1,4 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Cellular_Component_2021	integral component of plasma membrane (GO:0005887)	1/1454	4.931008e-01	9.331761e-01	0	0	1.594804e+00	1.127593e+00	KIR3DL1
+GO_Cellular_Component_2021	nucleus (GO:0005634)	1/4484	8.982517e-01	9.331761e-01	0	0	4.324113e-01	4.639986e-02	APEX2
+GO_Cellular_Component_2021	intracellular membrane-bounded organelle (GO:0043231)	1/5192	9.331761e-01	9.331761e-01	0	0	3.563861e-01	2.464814e-02	APEX2

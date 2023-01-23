@@ -1,0 +1,7 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Molecular_Function_2021	phosphodiesterase I activity (GO:0004528)	1/5	2.248161e-03	9.880086e-03	0	0	6.245938e+02	3.808550e+03	APEX2
+GO_Molecular_Function_2021	3'-5'-exodeoxyribonuclease activity (GO:0008296)	1/11	4.940043e-03	9.880086e-03	0	0	2.497625e+02	1.326334e+03	APEX2
+GO_Molecular_Function_2021	DNA-(apurinic or apyrimidinic site) endonuclease activity (GO:0003906)	1/11	4.940043e-03	9.880086e-03	0	0	2.497625e+02	1.326334e+03	APEX2
+GO_Molecular_Function_2021	phosphoric diester hydrolase activity (GO:0008081)	1/36	1.608691e-02	2.413036e-02	0	0	7.127143e+01	2.943331e+02	APEX2
+GO_Molecular_Function_2021	exonuclease activity (GO:0004527)	1/49	2.183931e-02	2.620717e-02	0	0	5.193490e+01	1.986013e+02	APEX2
+GO_Molecular_Function_2021	amyloid-beta binding (GO:0001540)	1/80	3.543612e-02	3.543612e-02	0	0	3.150633e+01	1.052319e+02	KIR3DL1

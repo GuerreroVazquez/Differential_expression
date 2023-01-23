@@ -1,0 +1,34 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Biological_Process_2021	negative regulation of cell motility (GO:2000146)	2/114	1.712787e-03	4.477073e-02	0	0	3.943849e+01	2.512087e+02	CLIC4;GTPBP4
+GO_Biological_Process_2021	negative regulation of cell migration (GO:0030336)	2/144	2.713377e-03	4.477073e-02	0	0	3.105947e+01	1.835478e+02	CLIC4;GTPBP4
+GO_Biological_Process_2021	negative regulation of DNA replication (GO:0008156)	1/16	8.766972e-03	7.034810e-02	0	0	1.331600e+02	6.307475e+02	GTPBP4
+GO_Biological_Process_2021	establishment or maintenance of apical/basal cell polarity (GO:0035088)	1/19	1.040299e-02	7.034810e-02	0	0	1.109500e+02	5.065602e+02	CLIC4
+GO_Biological_Process_2021	regulation of cell migration (GO:0030334)	2/408	2.021501e-02	7.034810e-02	0	0	1.071866e+01	4.181704e+01	CLIC4;GTPBP4
+GO_Biological_Process_2021	negative regulation of cell-cell adhesion (GO:0022408)	1/41	2.232564e-02	7.034810e-02	0	0	4.987250e+01	1.896162e+02	GTPBP4
+GO_Biological_Process_2021	keratinocyte differentiation (GO:0030216)	1/41	2.232564e-02	7.034810e-02	0	0	4.987250e+01	1.896162e+02	CLIC4
+GO_Biological_Process_2021	regulation of cell-cell adhesion (GO:0022407)	1/43	2.340302e-02	7.034810e-02	0	0	4.749286e+01	1.783305e+02	GTPBP4
+GO_Biological_Process_2021	negative regulation of protein ubiquitination (GO:0031397)	1/51	2.770174e-02	7.034810e-02	0	0	3.987800e+01	1.430129e+02	GTPBP4
+GO_Biological_Process_2021	regulation of DNA replication (GO:0006275)	1/53	2.877373e-02	7.034810e-02	0	0	3.834038e+01	1.360429e+02	GTPBP4
+GO_Biological_Process_2021	epidermal cell differentiation (GO:0009913)	1/53	2.877373e-02	7.034810e-02	0	0	3.834038e+01	1.360429e+02	CLIC4
+GO_Biological_Process_2021	inorganic anion transport (GO:0015698)	1/54	2.930932e-02	7.034810e-02	0	0	3.761509e+01	1.327756e+02	CLIC4
+GO_Biological_Process_2021	regulation of cyclin-dependent protein kinase activity (GO:1904029)	1/54	2.930932e-02	7.034810e-02	0	0	3.761509e+01	1.327756e+02	GTPBP4
+GO_Biological_Process_2021	negative regulation of protein modification by small protein conjugation or removal (GO:1903321)	1/55	2.984465e-02	7.034810e-02	0	0	3.691667e+01	1.296421e+02	GTPBP4
+GO_Biological_Process_2021	cellular response to calcium ion (GO:0071277)	1/69	3.731105e-02	7.292559e-02	0	0	2.929559e+01	9.633754e+01	CLIC4
+GO_Biological_Process_2021	negative regulation of cell adhesion (GO:0007162)	1/73	3.943469e-02	7.292559e-02	0	0	2.766250e+01	8.943589e+01	GTPBP4
+GO_Biological_Process_2021	chloride transport (GO:0006821)	1/76	4.102463e-02	7.292559e-02	0	0	2.655200e+01	8.479601e+01	CLIC4
+GO_Biological_Process_2021	regulation of organelle organization (GO:0033043)	1/80	4.314082e-02	7.292559e-02	0	0	2.520253e+01	7.921875e+01	CLIC4
+GO_Biological_Process_2021	skin development (GO:0043588)	1/80	4.314082e-02	7.292559e-02	0	0	2.520253e+01	7.921875e+01	CLIC4
+GO_Biological_Process_2021	regulation of cyclin-dependent protein serine/threonine kinase activity (GO:0000079)	1/82	4.419733e-02	7.292559e-02	0	0	2.457778e+01	7.666032e+01	GTPBP4
+GO_Biological_Process_2021	negative regulation of binding (GO:0051100)	1/88	4.736048e-02	7.442361e-02	0	0	2.287586e+01	6.977063e+01	GTPBP4
+GO_Biological_Process_2021	response to calcium ion (GO:0051592)	1/107	5.731446e-02	7.909197e-02	0	0	1.875755e+01	5.363162e+01	CLIC4
+GO_Biological_Process_2021	regulation of protein ubiquitination (GO:0031396)	1/109	5.835672e-02	7.909197e-02	0	0	1.840833e+01	5.230140e+01	GTPBP4
+GO_Biological_Process_2021	regulation of protein serine/threonine kinase activity (GO:0071900)	1/111	5.939794e-02	7.909197e-02	0	0	1.807182e+01	5.102570e+01	GTPBP4
+GO_Biological_Process_2021	regulation of cytoskeleton organization (GO:0051493)	1/112	5.991816e-02	7.909197e-02	0	0	1.790811e+01	5.040731e+01	CLIC4
+GO_Biological_Process_2021	cellular response to metal ion (GO:0071248)	1/131	6.975272e-02	8.853230e-02	0	0	1.527615e+01	4.067732e+01	CLIC4
+GO_Biological_Process_2021	brain development (GO:0007420)	1/150	7.949367e-02	9.715893e-02	0	0	1.331544e+01	3.371572e+01	TMX2
+GO_Biological_Process_2021	protein stabilization (GO:0050821)	1/179	9.418275e-02	1.110011e-01	0	0	1.112978e+01	2.629430e+01	GTPBP4
+GO_Biological_Process_2021	central nervous system development (GO:0007417)	1/268	1.379426e-01	1.569692e-01	0	0	7.386517e+00	1.463208e+01	TMX2
+GO_Biological_Process_2021	negative regulation of cell population proliferation (GO:0008285)	1/379	1.898234e-01	2.088057e-01	0	0	5.188095e+00	8.620857e+00	GTPBP4
+GO_Biological_Process_2021	negative regulation of cellular macromolecule biosynthetic process (GO:2000113)	1/547	2.629632e-01	2.793091e-01	0	0	3.560989e+00	4.756560e+00	GTPBP4
+GO_Biological_Process_2021	negative regulation of cellular process (GO:0048523)	1/566	2.708452e-01	2.793091e-01	0	0	3.437876e+00	4.490580e+00	GTPBP4
+GO_Biological_Process_2021	regulation of cell population proliferation (GO:0042127)	1/764	3.485435e-01	3.485435e-01	0	0	2.519790e+00	2.655839e+00	GTPBP4

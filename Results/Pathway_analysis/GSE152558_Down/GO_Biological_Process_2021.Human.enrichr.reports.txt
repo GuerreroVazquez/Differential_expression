@@ -1,0 +1,6 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Biological_Process_2021	natural killer cell mediated immunity (GO:0002228)	1/20	8.965773e-03	2.464603e-02	0	0	1.313947e+02	6.194396e+02	KIR3DL1
+GO_Biological_Process_2021	natural killer cell mediated cytotoxicity (GO:0042267)	1/22	9.858413e-03	2.464603e-02	0	0	1.188690e+02	5.491073e+02	KIR3DL1
+GO_Biological_Process_2021	base-excision repair (GO:0006284)	1/48	2.139788e-02	3.566313e-02	0	0	5.304255e+01	2.039202e+02	APEX2
+GO_Biological_Process_2021	regulation of immune response (GO:0050776)	1/179	7.774044e-02	9.717555e-02	0	0	1.391362e+01	3.554068e+01	KIR3DL1
+GO_Biological_Process_2021	DNA repair (GO:0006281)	1/298	1.264028e-01	1.264028e-01	0	0	8.288721e+00	1.714341e+01	APEX2

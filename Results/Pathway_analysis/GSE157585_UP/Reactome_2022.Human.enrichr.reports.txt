@@ -1,0 +1,17 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Reactome_2022	Attachment Of GPI Anchor To uPAR R-HSA-162791	1/7	3.146172e-03	2.516938e-02	0	0	4.163542e+02	2.398853e+03	PGAP1
+Reactome_2022	RUNX3 Regulates CDKN1A Transcription R-HSA-8941855	1/7	3.146172e-03	2.516938e-02	0	0	4.163542e+02	2.398853e+03	ZFHX3
+Reactome_2022	Trafficking Of GluR2-containing AMPA Receptors R-HSA-416993	1/17	7.625474e-03	4.066919e-02	0	0	1.560547e+02	7.609634e+02	TSPAN7
+Reactome_2022	Glutamate Binding, Activation Of AMPA Receptors And Synaptic Plasticity R-HSA-399721	1/31	1.386645e-02	5.546582e-02	0	0	8.317083e+01	3.558283e+02	TSPAN7
+Reactome_2022	Post-translational Modification: Synthesis Of GPI-anchored Proteins R-HSA-163125	1/92	4.065413e-02	1.118792e-01	0	0	2.733516e+01	8.754510e+01	PGAP1
+Reactome_2022	Transcriptional Regulation By RUNX3 R-HSA-8878159	1/95	4.195470e-02	1.118792e-01	0	0	2.645878e+01	8.390514e+01	ZFHX3
+Reactome_2022	Cell Surface Interactions At Vascular Wall R-HSA-202733	1/134	5.872015e-02	1.342175e-01	0	0	1.866353e+01	5.291060e+01	TSPAN7
+Reactome_2022	Neurotransmitter Receptors And Postsynaptic Signal Transmission R-HSA-112314	1/182	7.899622e-02	1.579924e-01	0	0	1.368094e+01	3.472708e+01	TSPAN7
+Reactome_2022	Transmission Across Chemical Synapses R-HSA-112315	1/246	1.054268e-01	1.874253e-01	0	0	1.007449e+01	2.266497e+01	TSPAN7
+Reactome_2022	Neuronal System R-HSA-112316	1/386	1.609064e-01	2.574503e-01	0	0	6.365584e+00	1.162949e+01	TSPAN7
+Reactome_2022	Hemostasis R-HSA-109582	1/576	2.313031e-01	3.364409e-01	0	0	4.220870e+00	6.179464e+00	TSPAN7
+Reactome_2022	Generic Transcription Pathway R-HSA-212436	1/1190	4.243213e-01	5.246606e-01	0	0	1.976661e+00	1.694521e+00	ZFHX3
+Reactome_2022	RNA Polymerase II Transcription R-HSA-73857	1/1312	4.570735e-01	5.246606e-01	0	0	1.781083e+00	1.394430e+00	ZFHX3
+Reactome_2022	Post-translational Protein Modification R-HSA-597592	1/1383	4.753620e-01	5.246606e-01	0	0	1.683158e+00	1.251729e+00	PGAP1
+Reactome_2022	Gene Expression (Transcription) R-HSA-74160	1/1449	4.918693e-01	5.246606e-01	0	0	1.600742e+00	1.135794e+00	ZFHX3
+Reactome_2022	Metabolism Of Proteins R-HSA-392499	1/1890	5.908192e-01	5.908192e-01	0	0	1.197856e+00	6.303660e-01	PGAP1

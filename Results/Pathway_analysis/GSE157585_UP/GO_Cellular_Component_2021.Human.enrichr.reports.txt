@@ -1,0 +1,14 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Cellular_Component_2021	intrinsic component of postsynaptic density membrane (GO:0099146)	1/11	4.940043e-03	2.916787e-02	0	0	2.497625e+02	1.326334e+03	GSG1L
+GO_Cellular_Component_2021	integral component of postsynaptic density membrane (GO:0099061)	1/11	4.940043e-03	2.916787e-02	0	0	2.497625e+02	1.326334e+03	GSG1L
+GO_Cellular_Component_2021	integral component of postsynaptic specialization membrane (GO:0099060)	1/15	6.731046e-03	2.916787e-02	0	0	1.783661e+02	8.920131e+02	GSG1L
+GO_Cellular_Component_2021	brush border membrane (GO:0031526)	1/37	1.653047e-02	5.372401e-02	0	0	6.928819e+01	2.842583e+02	AQP1
+GO_Cellular_Component_2021	sarcolemma (GO:0042383)	1/52	2.316253e-02	5.400277e-02	0	0	4.887255e+01	1.840159e+02	AQP1
+GO_Cellular_Component_2021	extracellular membrane-bounded organelle (GO:0065010)	1/56	2.492436e-02	5.400277e-02	0	0	4.530909e+01	1.672771e+02	AQP1
+GO_Cellular_Component_2021	cell projection membrane (GO:0031253)	1/92	4.065413e-02	7.550052e-02	0	0	2.733516e+01	8.754510e+01	AQP1
+GO_Cellular_Component_2021	basolateral plasma membrane (GO:0016323)	1/151	6.594618e-02	1.071625e-01	0	0	1.653417e+01	4.495502e+01	AQP1
+GO_Cellular_Component_2021	nuclear membrane (GO:0031965)	1/204	8.815897e-02	1.273407e-01	0	0	1.218473e+01	2.959200e+01	AQP1
+GO_Cellular_Component_2021	integral component of plasma membrane (GO:0005887)	2/1454	1.352806e-01	1.758648e-01	0	0	3.647973e+00	7.297420e+00	TSPAN7;AQP1
+GO_Cellular_Component_2021	endoplasmic reticulum membrane (GO:0005789)	1/712	2.784171e-01	3.290384e-01	0	0	3.389592e+00	4.334051e+00	PGAP1
+GO_Cellular_Component_2021	nucleus (GO:0005634)	3/4484	3.273394e-01	3.546177e-01	0	0	1.730640e+00	1.932706e+00	ZFHX3;DMRT2;AQP1
+GO_Cellular_Component_2021	intracellular membrane-bounded organelle (GO:0043231)	3/5192	4.262200e-01	4.262200e-01	0	0	1.426286e+00	1.216337e+00	ZFHX3;DMRT2;AQP1

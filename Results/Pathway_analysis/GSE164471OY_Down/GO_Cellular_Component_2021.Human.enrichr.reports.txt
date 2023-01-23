@@ -1,0 +1,9 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Cellular_Component_2021	muscle myosin complex (GO:0005859)	2/15	1.466168e-05	1.172935e-04	0	0	5.122821e+02	5.701839e+03	MYH8;MYH11
+GO_Cellular_Component_2021	myosin filament (GO:0032982)	1/6	2.397859e-03	9.591436e-03	0	0	5.710571e+02	3.445290e+03	MYH8
+GO_Cellular_Component_2021	supramolecular fiber (GO:0099512)	1/19	7.576012e-03	2.020270e-02	0	0	1.585238e+02	7.740350e+02	MYH8
+GO_Cellular_Component_2021	microbody membrane (GO:0031903)	1/52	2.061512e-02	3.361263e-02	0	0	5.585714e+01	2.168224e+02	PEX5L
+GO_Cellular_Component_2021	peroxisomal membrane (GO:0005778)	1/53	2.100790e-02	3.361263e-02	0	0	5.478022e+01	2.116082e+02	PEX5L
+GO_Cellular_Component_2021	voltage-gated potassium channel complex (GO:0008076)	1/73	2.883448e-02	3.844597e-02	0	0	3.952381e+01	1.401587e+02	HCN1
+GO_Cellular_Component_2021	peroxisome (GO:0005777)	1/128	5.007601e-02	5.722973e-02	0	0	2.234533e+01	6.690669e+01	PEX5L
+GO_Cellular_Component_2021	integral component of plasma membrane (GO:0005887)	1/1454	4.533431e-01	4.533431e-01	0	0	1.822731e+00	1.441974e+00	HCN1

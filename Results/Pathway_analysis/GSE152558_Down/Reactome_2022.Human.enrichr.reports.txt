@@ -1,0 +1,12 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Reactome_2022	Uptake Of Dietary Cobalamins Into Enterocytes R-HSA-9758881	1/10	4.491844e-03	4.941029e-02	0	0	2.775278e+02	1.500174e+03	PRSS58
+Reactome_2022	Cobalamin (Cbl, Vitamin B12) Transport And Metabolism R-HSA-196741	1/21	9.412182e-03	5.176700e-02	0	0	1.248187e+02	5.823731e+02	PRSS58
+Reactome_2022	Activation Of Matrix Metalloproteinases R-HSA-1592389	1/33	1.475517e-02	5.410229e-02	0	0	7.796484e+01	3.287124e+02	PRSS58
+Reactome_2022	Degradation Of Extracellular Matrix R-HSA-1474228	1/109	4.800336e-02	9.903308e-02	0	0	2.301273e+01	6.987780e+01	PRSS58
+Reactome_2022	Metabolism Of Water-Soluble Vitamins And Cofactors R-HSA-196849	1/122	5.358955e-02	9.903308e-02	0	0	2.052686e+01	6.006983e+01	PRSS58
+Reactome_2022	Immunoregulatory Interactions Between A Lymphoid And A non-Lymphoid Cell R-HSA-198933	1/123	5.401804e-02	9.903308e-02	0	0	2.035758e+01	5.941232e+01	KIR3DL1
+Reactome_2022	Metabolism Of Vitamins And Cofactors R-HSA-196854	1/186	8.066824e-02	1.267644e-01	0	0	1.338243e+01	3.368907e+01	PRSS58
+Reactome_2022	Extracellular Matrix Organization R-HSA-1474244	1/291	1.236048e-01	1.699567e-01	0	0	8.491810e+00	1.775354e+01	PRSS58
+Reactome_2022	Adaptive Immune System R-HSA-1280218	1/733	2.854585e-01	3.488937e-01	0	0	3.288764e+00	4.122987e+00	KIR3DL1
+Reactome_2022	Immune System R-HSA-168256	1/1943	6.014736e-01	6.220456e-01	0	0	1.161753e+00	5.906036e-01	KIR3DL1
+Reactome_2022	Metabolism R-HSA-1430728	1/2049	6.220456e-01	6.220456e-01	0	0	1.095154e+00	5.199155e-01	PRSS58

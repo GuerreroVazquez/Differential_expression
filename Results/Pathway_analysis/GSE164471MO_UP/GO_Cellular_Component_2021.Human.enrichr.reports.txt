@@ -1,0 +1,6 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Cellular_Component_2021	microvillus (GO:0005902)	1/57	1.698059e-02	6.161492e-02	0	0	7.120714e+01	2.902178e+02	MYO1H
+GO_Cellular_Component_2021	actin-based cell projection (GO:0098858)	1/83	2.464597e-02	6.161492e-02	0	0	4.856585e+01	1.798463e+02	MYO1H
+GO_Cellular_Component_2021	vesicle (GO:0031982)	1/226	6.592101e-02	1.098683e-01	0	0	1.757244e+01	4.778472e+01	MYO1H
+GO_Cellular_Component_2021	actin cytoskeleton (GO:0015629)	1/316	9.114400e-02	1.139300e-01	0	0	1.249460e+01	2.992851e+01	MYO1H
+GO_Cellular_Component_2021	cytoskeleton (GO:0005856)	1/600	1.670469e-01	1.670469e-01	0	0	6.475793e+00	1.158830e+01	MYO1H

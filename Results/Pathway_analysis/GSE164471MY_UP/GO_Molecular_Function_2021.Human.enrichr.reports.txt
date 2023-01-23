@@ -1,0 +1,2 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Molecular_Function_2021	RNA binding (GO:0003723)	1/1406	1.356609e-01	1.356609e-01	0	0	1.323345e+01	2.643511e+01	DQX1

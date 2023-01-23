@@ -1,0 +1,6 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Molecular_Function_2021	myosin light chain binding (GO:0032027)	1/6	5.999092e-04	2.999546e-03	0	0	3.998600e+03	2.966454e+04	MYH8
+GO_Molecular_Function_2021	myosin binding (GO:0017022)	1/56	5.592227e-03	1.398057e-02	0	0	3.626000e+02	1.880581e+03	MYH8
+GO_Molecular_Function_2021	ATP binding (GO:0005524)	1/278	2.760730e-02	3.795810e-02	0	0	7.119495e+01	2.555667e+02	MYH8
+GO_Molecular_Function_2021	adenyl ribonucleotide binding (GO:0032559)	1/306	3.036648e-02	3.795810e-02	0	0	6.456721e+01	2.256247e+02	MYH8
+GO_Molecular_Function_2021	purine ribonucleoside triphosphate binding (GO:0035639)	1/460	4.547190e-02	4.547190e-02	0	0	4.256863e+01	1.315652e+02	MYH8

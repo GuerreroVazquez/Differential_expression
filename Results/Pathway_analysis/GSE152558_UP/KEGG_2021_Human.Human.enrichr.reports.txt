@@ -1,0 +1,12 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+KEGG_2021_Human	Collecting duct acid secretion	1/27	1.075087e-02	6.782127e-02	0	0	1.097033e+02	4.972596e+02	ATP6V1F
+KEGG_2021_Human	Vibrio cholerae infection	1/50	1.982916e-02	6.782127e-02	0	0	5.814286e+01	2.279550e+02	ATP6V1F
+KEGG_2021_Human	Epithelial cell signaling in Helicobacter pylori infection	1/70	2.766399e-02	6.782127e-02	0	0	4.124845e+01	1.479839e+02	ATP6V1F
+KEGG_2021_Human	Synaptic vesicle cycle	1/78	3.078255e-02	6.782127e-02	0	0	3.694805e+01	1.286090e+02	ATP6V1F
+KEGG_2021_Human	Rheumatoid arthritis	1/93	3.660626e-02	6.782127e-02	0	0	3.090062e+01	1.022049e+02	ATP6V1F
+KEGG_2021_Human	IL-17 signaling pathway	1/94	3.699342e-02	6.782127e-02	0	0	3.056682e+01	1.007793e+02	IL25
+KEGG_2021_Human	Oxidative phosphorylation	1/133	5.198675e-02	7.330297e-02	0	0	2.149351e+01	6.355128e+01	ATP6V1F
+KEGG_2021_Human	Phagosome	1/152	5.921690e-02	7.330297e-02	0	0	1.877105e+01	5.305728e+01	ATP6V1F
+KEGG_2021_Human	mTOR signaling pathway	1/154	5.997516e-02	7.330297e-02	0	0	1.852381e+01	5.212276e+01	ATP6V1F
+KEGG_2021_Human	Cytokine-cytokine receptor interaction	1/295	1.121030e-01	1.233133e-01	0	0	9.571429e+00	2.094552e+01	IL25
+KEGG_2021_Human	Human papillomavirus infection	1/331	1.249997e-01	1.249997e-01	0	0	8.511688e+00	1.769958e+01	ATP6V1F

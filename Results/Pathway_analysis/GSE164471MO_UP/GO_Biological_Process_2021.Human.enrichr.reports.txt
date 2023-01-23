@@ -1,0 +1,13 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Biological_Process_2021	vesicle transport along actin filament (GO:0030050)	1/19	5.687116e-03	2.794667e-02	0	0	2.219556e+02	1.147411e+03	MYO1H
+GO_Biological_Process_2021	actin filament-based transport (GO:0099515)	1/21	6.284191e-03	2.794667e-02	0	0	1.997400e+02	1.012625e+03	MYO1H
+GO_Biological_Process_2021	actin filament bundle assembly (GO:0051017)	1/33	9.860378e-03	2.794667e-02	0	0	1.247625e+02	5.763068e+02	ESPNL
+GO_Biological_Process_2021	actin filament bundle organization (GO:0061572)	1/33	9.860378e-03	2.794667e-02	0	0	1.247625e+02	5.763068e+02	ESPNL
+GO_Biological_Process_2021	vesicle cytoskeletal trafficking (GO:0099518)	1/39	1.164445e-02	2.794667e-02	0	0	1.050316e+02	4.676978e+02	MYO1H
+GO_Biological_Process_2021	sensory perception of mechanical stimulus (GO:0050954)	1/88	2.611435e-02	4.627628e-02	0	0	4.576322e+01	1.668193e+02	ESPNL
+GO_Biological_Process_2021	sensory perception of sound (GO:0007605)	1/91	2.699450e-02	4.627628e-02	0	0	4.423111e+01	1.597682e+02	ESPNL
+GO_Biological_Process_2021	actin filament organization (GO:0007015)	1/152	4.474759e-02	6.712139e-02	0	0	2.628212e+01	8.165112e+01	MYO1H
+GO_Biological_Process_2021	cellular component assembly (GO:0022607)	1/261	7.579836e-02	1.010645e-01	0	0	1.518000e+01	3.915952e+01	ESPNL
+GO_Biological_Process_2021	supramolecular fiber organization (GO:0097435)	1/351	1.007984e-01	1.209581e-01	0	0	1.122514e+01	2.575758e+01	MYO1H
+GO_Biological_Process_2021	cellular response to cytokine stimulus (GO:0071345)	1/482	1.361784e-01	1.485583e-01	0	0	8.113514e+00	1.617664e+01	IL24
+GO_Biological_Process_2021	cytokine-mediated signaling pathway (GO:0019221)	1/621	1.724429e-01	1.724429e-01	0	0	6.249677e+00	1.098499e+01	IL24

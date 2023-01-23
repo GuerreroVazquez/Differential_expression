@@ -1,0 +1,5 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+KEGG_2021_Human	Base excision repair	1/33	1.475517e-02	3.749117e-02	0	0	7.796484e+01	3.287124e+02	APEX2
+KEGG_2021_Human	Graft-versus-host disease	1/42	1.874559e-02	3.749117e-02	0	0	6.082317e+01	2.418814e+02	KIR3DL1
+KEGG_2021_Human	Antigen processing and presentation	1/78	3.456400e-02	4.608533e-02	0	0	3.232792e+01	1.087816e+02	KIR3DL1
+KEGG_2021_Human	Natural killer cell mediated cytotoxicity	1/131	5.743982e-02	5.743982e-02	0	0	1.909712e+01	5.456079e+01	KIR3DL1

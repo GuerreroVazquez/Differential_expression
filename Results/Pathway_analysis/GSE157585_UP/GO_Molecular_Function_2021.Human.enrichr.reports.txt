@@ -1,0 +1,19 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Molecular_Function_2021	polyol transmembrane transporter activity (GO:0015166)	1/5	2.248161e-03	1.730841e-02	0	0	6.245938e+02	3.808550e+03	AQP1
+GO_Molecular_Function_2021	intracellular cGMP-activated cation channel activity (GO:0005223)	1/7	3.146172e-03	1.730841e-02	0	0	4.163542e+02	2.398853e+03	AQP1
+GO_Molecular_Function_2021	glycerol transmembrane transporter activity (GO:0015168)	1/7	3.146172e-03	1.730841e-02	0	0	4.163542e+02	2.398853e+03	AQP1
+GO_Molecular_Function_2021	ammonium transmembrane transporter activity (GO:0008519)	1/10	4.491844e-03	1.730841e-02	0	0	2.775278e+02	1.500174e+03	AQP1
+GO_Molecular_Function_2021	intracellular cyclic nucleotide activated cation channel activity (GO:0005221)	1/11	4.940043e-03	1.730841e-02	0	0	2.497625e+02	1.326334e+03	AQP1
+GO_Molecular_Function_2021	water channel activity (GO:0015250)	1/13	5.835903e-03	1.730841e-02	0	0	2.081146e+02	1.070484e+03	AQP1
+GO_Molecular_Function_2021	water transmembrane transporter activity (GO:0005372)	1/15	6.731046e-03	1.730841e-02	0	0	1.783661e+02	8.920131e+02	AQP1
+GO_Molecular_Function_2021	metal ion transmembrane transporter activity (GO:0046873)	1/27	1.208689e-02	2.719549e-02	0	0	9.598558e+01	4.238372e+02	AQP1
+GO_Molecular_Function_2021	potassium ion transmembrane transporter activity (GO:0015079)	1/32	1.431090e-02	2.862180e-02	0	0	8.048387e+01	3.417936e+02	AQP1
+GO_Molecular_Function_2021	channel activity (GO:0015267)	1/46	2.051449e-02	3.692608e-02	0	0	5.540556e+01	2.153406e+02	AQP1
+GO_Molecular_Function_2021	inorganic cation transmembrane transporter activity (GO:0022890)	1/51	2.272163e-02	3.718086e-02	0	0	4.985250e+01	1.886637e+02	AQP1
+GO_Molecular_Function_2021	potassium channel activity (GO:0005267)	1/91	4.022025e-02	5.561191e-02	0	0	2.764028e+01	8.881884e+01	AQP1
+GO_Molecular_Function_2021	carboxylic ester hydrolase activity (GO:0052689)	1/96	4.238788e-02	5.561191e-02	0	0	2.617895e+01	8.274885e+01	PGAP1
+GO_Molecular_Function_2021	cation channel activity (GO:0005261)	1/98	4.325371e-02	5.561191e-02	0	0	2.563660e+01	8.051615e+01	AQP1
+GO_Molecular_Function_2021	RNA polymerase II cis-regulatory region sequence-specific DNA binding (GO:0000978)	2/1149	9.074255e-02	1.020854e-01	0	0	4.693984e+00	1.126429e+01	ZFHX3;DMRT2
+GO_Molecular_Function_2021	cis-regulatory region sequence-specific DNA binding (GO:0000987)	2/1149	9.074255e-02	1.020854e-01	0	0	4.693984e+00	1.126429e+01	ZFHX3;DMRT2
+GO_Molecular_Function_2021	DNA-binding transcription repressor activity, RNA polymerase II-specific (GO:0001227)	1/256	1.094950e-01	1.159359e-01	0	0	9.674510e+00	2.139882e+01	ZFHX3
+GO_Molecular_Function_2021	RNA polymerase II transcription regulatory region sequence-specific DNA binding (GO:0000977)	2/1359	1.208448e-01	1.208448e-01	0	0	3.923360e+00	8.291033e+00	ZFHX3;DMRT2

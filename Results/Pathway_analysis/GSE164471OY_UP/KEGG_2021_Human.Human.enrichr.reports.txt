@@ -1,0 +1,2 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+KEGG_2021_Human	Amino sugar and nucleotide sugar metabolism	1/48	1.194361e-02	1.194361e-02	0	0	1.061064e+02	4.697922e+02	UAP1

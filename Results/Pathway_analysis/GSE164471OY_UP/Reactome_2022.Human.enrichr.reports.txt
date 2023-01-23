@@ -1,0 +1,15 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Reactome_2022	Synthesis Of UDP-N-acetyl-glucosamine R-HSA-446210	1/8	1.998563e-03	2.621288e-02	0	0	7.138571e+02	4.436855e+03	UAP1
+Reactome_2022	Response Of EIF2AK1 (HRI) To Heme Deficiency R-HSA-9648895	1/15	3.744697e-03	2.621288e-02	0	0	3.568036e+02	1.993609e+03	ATF3
+Reactome_2022	ATF4 Activates Genes In Response To Endoplasmic Reticulum Stress R-HSA-380994	1/27	6.732390e-03	2.791301e-02	0	0	1.920096e+02	9.602065e+02	ATF3
+Reactome_2022	PERK Regulates Gene Expression R-HSA-381042	1/32	7.975146e-03	2.791301e-02	0	0	1.610000e+02	7.778595e+02	ATF3
+Reactome_2022	Synthesis Of Substrates In N-glycan Biosythesis R-HSA-446219	1/63	1.565251e-02	4.246079e-02	0	0	8.037500e+01	3.341288e+02	UAP1
+Reactome_2022	Biosynthesis Of N-glycan Precursor (Dolichol LLO) And Transfer To Protein R-HSA-446193	1/77	1.910409e-02	4.246079e-02	0	0	6.552303e+01	2.593305e+02	UAP1
+Reactome_2022	Unfolded Protein Response (UPR) R-HSA-381119	1/89	2.205488e-02	4.246079e-02	0	0	5.655398e+01	2.157094e+02	ATF3
+Reactome_2022	Response Of EIF2AK4 (GCN2) To Amino Acid Deficiency R-HSA-9633012	1/98	2.426331e-02	4.246079e-02	0	0	5.128351e+01	1.907126e+02	ATF3
+Reactome_2022	Cellular Response To Starvation R-HSA-9711097	1/153	3.767274e-02	5.860204e-02	0	0	3.263651e+01	1.070092e+02	ATF3
+Reactome_2022	Asparagine N-linked Glycosylation R-HSA-446203	1/282	6.854613e-02	9.596458e-02	0	0	1.753915e+01	4.700927e+01	UAP1
+Reactome_2022	Cellular Responses To Stress R-HSA-2262752	1/722	1.679451e-01	1.994560e-01	0	0	6.683079e+00	1.192340e+01	ATF3
+Reactome_2022	Cellular Responses To Stimuli R-HSA-8953897	1/736	1.709623e-01	1.994560e-01	0	0	6.551020e+00	1.157115e+01	ATF3
+Reactome_2022	Post-translational Protein Modification R-HSA-597592	1/1383	3.011521e-01	3.243176e-01	0	0	3.367041e+00	4.040920e+00	UAP1
+Reactome_2022	Metabolism Of Proteins R-HSA-392499	1/1890	3.912766e-01	3.912766e-01	0	0	2.396241e+00	2.248490e+00	UAP1

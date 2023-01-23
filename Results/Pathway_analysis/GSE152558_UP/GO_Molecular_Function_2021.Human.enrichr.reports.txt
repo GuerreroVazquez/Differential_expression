@@ -1,0 +1,7 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Molecular_Function_2021	insulin-like growth factor II binding (GO:0031995)	1/7	2.797015e-03	1.197049e-02	0	0	4.758571e+02	2.797661e+03	IGFBP6
+GO_Molecular_Function_2021	insulin-like growth factor I binding (GO:0031994)	1/13	5.189022e-03	1.197049e-02	0	0	2.378571e+02	1.251416e+03	IGFBP6
+GO_Molecular_Function_2021	insulin-like growth factor binding (GO:0005520)	1/15	5.985243e-03	1.197049e-02	0	0	2.038571e+02	1.043434e+03	IGFBP6
+GO_Molecular_Function_2021	proton transmembrane transporter activity (GO:0015078)	1/40	1.589107e-02	2.383661e-02	0	0	7.308791e+01	3.027300e+02	ATP6V1F
+GO_Molecular_Function_2021	inorganic cation transmembrane transporter activity (GO:0022890)	1/51	2.022221e-02	2.426665e-02	0	0	5.697714e+01	2.222663e+02	ATP6V1F
+GO_Molecular_Function_2021	cytokine receptor binding (GO:0005126)	1/105	4.124317e-02	4.124317e-02	0	0	2.731868e+01	8.709933e+01	IL25

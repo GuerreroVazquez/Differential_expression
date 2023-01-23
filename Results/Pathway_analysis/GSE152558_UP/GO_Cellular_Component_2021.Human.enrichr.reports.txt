@@ -1,0 +1,4 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Cellular_Component_2021	proton-transporting V-type ATPase complex (GO:0033176)	1/15	5.985243e-03	1.136402e-02	0	0	2.038571e+02	1.043434e+03	ATP6V1F
+GO_Cellular_Component_2021	vacuolar proton-transporting V-type ATPase complex (GO:0016471)	1/19	7.576012e-03	1.136402e-02	0	0	1.585238e+02	7.740350e+02	ATP6V1F
+GO_Cellular_Component_2021	vacuolar membrane (GO:0005774)	1/45	1.786184e-02	1.786184e-02	0	0	6.476623e+01	2.606898e+02	ATP6V1F

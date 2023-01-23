@@ -1,0 +1,4 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Cellular_Component_2021	myosin filament (GO:0032982)	1/6	5.999092e-04	1.799728e-03	0	0	3.998600e+03	2.966454e+04	MYH8
+GO_Cellular_Component_2021	muscle myosin complex (GO:0005859)	1/15	1.499445e-03	1.899109e-03	0	0	1.427429e+03	9.282083e+03	MYH8
+GO_Cellular_Component_2021	supramolecular fiber (GO:0099512)	1/19	1.899109e-03	1.899109e-03	0	0	1.110000e+03	6.955671e+03	MYH8

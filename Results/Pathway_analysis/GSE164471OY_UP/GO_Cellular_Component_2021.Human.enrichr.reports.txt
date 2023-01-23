@@ -1,0 +1,6 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Cellular_Component_2021	nucleolus (GO:0005730)	1/733	1.703165e-01	3.874323e-01	0	0	6.578893e+00	1.164528e+01	ATF3
+GO_Cellular_Component_2021	nuclear lumen (GO:0031981)	1/745	1.728973e-01	3.874323e-01	0	0	6.468750e+00	1.135303e+01	ATF3
+GO_Cellular_Component_2021	intracellular non-membrane-bounded organelle (GO:0043232)	1/1158	2.578838e-01	3.874323e-01	0	0	4.070441e+00	5.516450e+00	ATF3
+GO_Cellular_Component_2021	nucleus (GO:0005634)	2/4484	3.128929e-01	3.874323e-01	0	0	2.307452e+00	2.681015e+00	IGFN1;ATF3
+GO_Cellular_Component_2021	intracellular membrane-bounded organelle (GO:0043231)	2/5192	3.874323e-01	3.874323e-01	0	0	1.901734e+00	1.803251e+00	IGFN1;ATF3

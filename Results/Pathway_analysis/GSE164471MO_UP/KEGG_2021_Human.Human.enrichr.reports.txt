@@ -1,0 +1,5 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+KEGG_2021_Human	Viral protein interaction with cytokine and cytokine receptor	1/100	2.963096e-02	7.689389e-02	0	0	4.019192e+01	1.414328e+02	IL24
+KEGG_2021_Human	JAK-STAT signaling pathway	1/162	4.763202e-02	7.689389e-02	0	0	2.463727e+01	7.500200e+01	IL24
+KEGG_2021_Human	Pathogenic Escherichia coli infection	1/197	5.767042e-02	7.689389e-02	0	0	2.020204e+01	5.763664e+01	MYO1H
+KEGG_2021_Human	Cytokine-cytokine receptor interaction	1/295	8.531001e-02	8.531001e-02	0	0	1.340136e+01	3.298696e+01	IL24

@@ -1,0 +1,26 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Biological_Process_2021	positive regulation of extrinsic apoptotic signaling pathway via death domain receptors (GO:1902043)	1/6	1.499220e-03	1.560290e-02	0	0	9.995000e+02	6.499559e+03	ATF3
+GO_Biological_Process_2021	positive regulation of transcription from RNA polymerase II promoter in response to endoplasmic reticulum stress (GO:1990440)	1/11	2.747205e-03	1.560290e-02	0	0	4.996250e+02	2.946374e+03	ATF3
+GO_Biological_Process_2021	UDP-N-acetylglucosamine biosynthetic process (GO:0006048)	1/11	2.747205e-03	1.560290e-02	0	0	4.996250e+02	2.946374e+03	UAP1
+GO_Biological_Process_2021	amino sugar biosynthetic process (GO:0046349)	1/12	2.996653e-03	1.560290e-02	0	0	4.541818e+02	2.638914e+03	UAP1
+GO_Biological_Process_2021	UDP-N-acetylglucosamine metabolic process (GO:0006047)	1/13	3.246051e-03	1.560290e-02	0	0	4.163125e+02	2.385602e+03	UAP1
+GO_Biological_Process_2021	cellular response to arsenic-containing substance (GO:0071243)	1/15	3.744697e-03	1.560290e-02	0	0	3.568036e+02	1.993609e+03	ATF3
+GO_Biological_Process_2021	nucleotide-sugar biosynthetic process (GO:0009226)	1/19	4.741392e-03	1.693354e-02	0	0	2.774583e+02	1.484797e+03	UAP1
+GO_Biological_Process_2021	positive regulation of transcription from RNA polymerase II promoter in response to stress (GO:0036003)	1/24	5.986139e-03	1.870668e-02	0	0	2.170870e+02	1.111118e+03	ATF3
+GO_Biological_Process_2021	homophilic cell adhesion via plasma membrane adhesion molecules (GO:0007156)	1/60	1.491162e-02	3.893852e-02	0	0	8.447458e+01	3.552675e+02	IGFN1
+GO_Biological_Process_2021	regulation of translational initiation (GO:0006446)	1/68	1.688633e-02	3.893852e-02	0	0	7.435821e+01	3.034745e+02	ATF3
+GO_Biological_Process_2021	synapse assembly (GO:0007416)	1/69	1.713295e-02	3.893852e-02	0	0	7.326103e+01	2.979344e+02	IGFN1
+GO_Biological_Process_2021	regulation of transcription from RNA polymerase II promoter in response to stress (GO:0043618)	1/87	2.156358e-02	4.492412e-02	0	0	5.787500e+01	2.220519e+02	ATF3
+GO_Biological_Process_2021	cell junction assembly (GO:0034329)	1/102	2.524355e-02	4.854529e-02	0	0	4.924257e+01	1.811725e+02	IGFN1
+GO_Biological_Process_2021	response to endoplasmic reticulum stress (GO:0034976)	1/110	2.720167e-02	4.857442e-02	0	0	4.561009e+01	1.644005e+02	ATF3
+GO_Biological_Process_2021	regulation of cellular response to stress (GO:0080135)	1/118	2.915665e-02	4.859441e-02	0	0	4.247436e+01	1.501499e+02	ATF3
+GO_Biological_Process_2021	synapse organization (GO:0050808)	1/126	3.110848e-02	4.860699e-02	0	0	3.974000e+01	1.379087e+02	IGFN1
+GO_Biological_Process_2021	cell-cell adhesion via plasma-membrane adhesion molecules (GO:0098742)	1/170	4.178751e-02	6.145221e-02	0	0	2.932840e+01	9.312231e+01	IGFN1
+GO_Biological_Process_2021	regulation of protein phosphorylation (GO:0001932)	1/266	6.476051e-02	8.994515e-02	0	0	1.861321e+01	5.094545e+01	ATF3
+GO_Biological_Process_2021	nervous system development (GO:0007399)	1/447	1.068751e-01	1.406251e-01	0	0	1.095796e+01	2.450304e+01	IGFN1
+GO_Biological_Process_2021	negative regulation of transcription by RNA polymerase II (GO:0000122)	1/684	1.597113e-01	1.996392e-01	0	0	7.068814e+00	1.296694e+01	ATF3
+GO_Biological_Process_2021	positive regulation of transcription by RNA polymerase II (GO:0045944)	1/908	2.073216e-01	2.449903e-01	0	0	5.261301e+00	8.278574e+00	ATF3
+GO_Biological_Process_2021	negative regulation of transcription, DNA-templated (GO:0045892)	1/948	2.155915e-01	2.449903e-01	0	0	5.028511e+00	7.715597e+00	ATF3
+GO_Biological_Process_2021	positive regulation of transcription, DNA-templated (GO:0045893)	1/1183	2.627945e-01	2.856462e-01	0	0	3.979061e+00	5.317549e+00	ATF3
+GO_Biological_Process_2021	regulation of transcription by RNA polymerase II (GO:0006357)	1/2206	4.425686e-01	4.484960e-01	0	0	2.017007e+00	1.644183e+00	ATF3
+GO_Biological_Process_2021	regulation of transcription, DNA-templated (GO:0006355)	1/2244	4.484960e-01	4.484960e-01	0	0	1.978600e+00	1.586552e+00	ATF3

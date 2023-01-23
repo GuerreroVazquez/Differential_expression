@@ -1,0 +1,101 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Biological_Process_2021	carbon dioxide transport (GO:0015670)	1/5	2.248161e-03	2.695644e-02	0	0	6.245938e+02	3.808550e+03	AQP1
+GO_Biological_Process_2021	cellular response to salt stress (GO:0071472)	1/5	2.248161e-03	2.695644e-02	0	0	6.245938e+02	3.808550e+03	AQP1
+GO_Biological_Process_2021	response to salt stress (GO:0009651)	1/5	2.248161e-03	2.695644e-02	0	0	6.245938e+02	3.808550e+03	AQP1
+GO_Biological_Process_2021	regulation of saliva secretion (GO:0046877)	1/6	2.697256e-03	2.695644e-02	0	0	4.996500e+02	2.955690e+03	AQP1
+GO_Biological_Process_2021	cellular water homeostasis (GO:0009992)	1/6	2.697256e-03	2.695644e-02	0	0	4.996500e+02	2.955690e+03	AQP1
+GO_Biological_Process_2021	cellular hyperosmotic response (GO:0071474)	1/6	2.697256e-03	2.695644e-02	0	0	4.996500e+02	2.955690e+03	AQP1
+GO_Biological_Process_2021	attachment of GPI anchor to protein (GO:0016255)	1/6	2.697256e-03	2.695644e-02	0	0	4.996500e+02	2.955690e+03	PGAP1
+GO_Biological_Process_2021	ammonium transport (GO:0015696)	1/7	3.146172e-03	2.695644e-02	0	0	4.163542e+02	2.398853e+03	AQP1
+GO_Biological_Process_2021	hyperosmotic response (GO:0006972)	1/7	3.146172e-03	2.695644e-02	0	0	4.163542e+02	2.398853e+03	AQP1
+GO_Biological_Process_2021	glycerol transport (GO:0015793)	1/7	3.146172e-03	2.695644e-02	0	0	4.163542e+02	2.398853e+03	AQP1
+GO_Biological_Process_2021	water homeostasis (GO:0030104)	1/8	3.594909e-03	2.695644e-02	0	0	3.568571e+02	2.008476e+03	AQP1
+GO_Biological_Process_2021	one-carbon compound transport (GO:0019755)	1/9	4.043466e-03	2.695644e-02	0	0	3.122344e+02	1.720615e+03	AQP1
+GO_Biological_Process_2021	cellular response to nitric oxide (GO:0071732)	1/9	4.043466e-03	2.695644e-02	0	0	3.122344e+02	1.720615e+03	AQP1
+GO_Biological_Process_2021	cellular response to reactive nitrogen species (GO:1902170)	1/9	4.043466e-03	2.695644e-02	0	0	3.122344e+02	1.720615e+03	AQP1
+GO_Biological_Process_2021	regulation of ER to Golgi vesicle-mediated transport (GO:0060628)	1/9	4.043466e-03	2.695644e-02	0	0	3.122344e+02	1.720615e+03	PGAP1
+GO_Biological_Process_2021	gas transport (GO:0015669)	1/12	5.388063e-03	3.141782e-02	0	0	2.270455e+02	1.185988e+03	AQP1
+GO_Biological_Process_2021	polyol transport (GO:0015791)	1/12	5.388063e-03	3.141782e-02	0	0	2.270455e+02	1.185988e+03	AQP1
+GO_Biological_Process_2021	response to nitric oxide (GO:0071731)	1/13	5.835903e-03	3.141782e-02	0	0	2.081146e+02	1.070484e+03	AQP1
+GO_Biological_Process_2021	carbohydrate transport (GO:0008643)	1/14	6.283564e-03	3.141782e-02	0	0	1.920962e+02	9.738925e+02	AQP1
+GO_Biological_Process_2021	cGMP-mediated signaling (GO:0019934)	1/14	6.283564e-03	3.141782e-02	0	0	1.920962e+02	9.738925e+02	AQP1
+GO_Biological_Process_2021	positive regulation of secretion (GO:0051047)	1/15	6.731046e-03	3.205260e-02	0	0	1.783661e+02	8.920131e+02	AQP1
+GO_Biological_Process_2021	cellular response to glucocorticoid stimulus (GO:0071385)	1/18	8.072419e-03	3.363508e-02	0	0	1.468676e+02	7.077996e+02	AQP1
+GO_Biological_Process_2021	water transport (GO:0006833)	1/18	8.072419e-03	3.363508e-02	0	0	1.468676e+02	7.077996e+02	AQP1
+GO_Biological_Process_2021	fluid transport (GO:0042044)	1/18	8.072419e-03	3.363508e-02	0	0	1.468676e+02	7.077996e+02	AQP1
+GO_Biological_Process_2021	cellular response to copper ion (GO:0071280)	1/19	8.519186e-03	3.407674e-02	0	0	1.387014e+02	6.609724e+02	AQP1
+GO_Biological_Process_2021	cellular response to inorganic substance (GO:0071241)	1/21	9.412182e-03	3.620070e-02	0	0	1.248187e+02	5.823731e+02	AQP1
+GO_Biological_Process_2021	cellular response to osmotic stress (GO:0071470)	1/22	9.858413e-03	3.651264e-02	0	0	1.188690e+02	5.491073e+02	AQP1
+GO_Biological_Process_2021	response to copper ion (GO:0046688)	1/23	1.030446e-02	3.680166e-02	0	0	1.134602e+02	5.191007e+02	AQP1
+GO_Biological_Process_2021	regulation of AMPA receptor activity (GO:2000311)	1/25	1.119603e-02	3.860701e-02	0	0	1.039948e+02	4.671650e+02	GSG1L
+GO_Biological_Process_2021	positive regulation of fibroblast proliferation (GO:0048146)	1/28	1.253205e-02	4.042595e-02	0	0	9.242593e+01	4.047762e+02	AQP1
+GO_Biological_Process_2021	GPI anchor metabolic process (GO:0006505)	1/28	1.253205e-02	4.042595e-02	0	0	9.242593e+01	4.047762e+02	PGAP1
+GO_Biological_Process_2021	renal water homeostasis (GO:0003091)	1/31	1.386645e-02	4.088829e-02	0	0	8.317083e+01	3.558283e+02	AQP1
+GO_Biological_Process_2021	cellular response to cAMP (GO:0071320)	1/31	1.386645e-02	4.088829e-02	0	0	8.317083e+01	3.558283e+02	AQP1
+GO_Biological_Process_2021	GPI anchor biosynthetic process (GO:0006506)	1/32	1.431090e-02	4.088829e-02	0	0	8.048387e+01	3.417936e+02	PGAP1
+GO_Biological_Process_2021	modulation by host of symbiont process (GO:0051851)	1/32	1.431090e-02	4.088829e-02	0	0	8.048387e+01	3.417936e+02	AQP1
+GO_Biological_Process_2021	bicarbonate transport (GO:0015701)	1/35	1.564317e-02	4.146916e-02	0	0	7.337132e+01	3.050575e+02	AQP1
+GO_Biological_Process_2021	cellular response to hydrogen peroxide (GO:0070301)	1/35	1.564317e-02	4.146916e-02	0	0	7.337132e+01	3.050575e+02	AQP1
+GO_Biological_Process_2021	cyclic-nucleotide-mediated signaling (GO:0019935)	1/36	1.608691e-02	4.146916e-02	0	0	7.127143e+01	2.943331e+02	AQP1
+GO_Biological_Process_2021	response to cAMP (GO:0051591)	1/38	1.697384e-02	4.146916e-02	0	0	6.741216e+01	2.747775e+02	AQP1
+GO_Biological_Process_2021	odontogenesis (GO:0042476)	1/39	1.741705e-02	4.146916e-02	0	0	6.563487e+01	2.658413e+02	AQP1
+GO_Biological_Process_2021	cellular response to ketone (GO:1901655)	1/39	1.741705e-02	4.146916e-02	0	0	6.563487e+01	2.658413e+02	AQP1
+GO_Biological_Process_2021	positive regulation of intracellular transport (GO:0032388)	1/39	1.741705e-02	4.146916e-02	0	0	6.563487e+01	2.658413e+02	PGAP1
+GO_Biological_Process_2021	cellular response to retinoic acid (GO:0071300)	1/43	1.918808e-02	4.462344e-02	0	0	5.937202e+01	2.347253e+02	AQP1
+GO_Biological_Process_2021	regulation of fibroblast proliferation (GO:0048145)	1/46	2.051449e-02	4.549856e-02	0	0	5.540556e+01	2.153406e+02	AQP1
+GO_Biological_Process_2021	regulation of cellular protein localization (GO:1903827)	1/46	2.051449e-02	4.549856e-02	0	0	5.540556e+01	2.153406e+02	TRIM67
+GO_Biological_Process_2021	cellular response to mechanical stimulus (GO:0071260)	1/49	2.183931e-02	4.549856e-02	0	0	5.193490e+01	1.986013e+02	AQP1
+GO_Biological_Process_2021	response to hydrogen peroxide (GO:0042542)	1/49	2.183931e-02	4.549856e-02	0	0	5.193490e+01	1.986013e+02	AQP1
+GO_Biological_Process_2021	regulation of cellular localization (GO:0060341)	1/49	2.183931e-02	4.549856e-02	0	0	5.193490e+01	1.986013e+02	TRIM67
+GO_Biological_Process_2021	glycolipid metabolic process (GO:0006664)	1/52	2.316253e-02	4.720651e-02	0	0	4.887255e+01	1.840159e+02	PGAP1
+GO_Biological_Process_2021	negative regulation of cysteine-type endopeptidase activity (GO:2000117)	1/53	2.360325e-02	4.720651e-02	0	0	4.793029e+01	1.795646e+02	AQP1
+GO_Biological_Process_2021	negative regulation of cysteine-type endopeptidase activity involved in apoptotic process (GO:0043154)	1/55	2.448416e-02	4.800817e-02	0	0	4.615046e+01	1.712057e+02	AQP1
+GO_Biological_Process_2021	regulation of neurotransmitter receptor activity (GO:0099601)	1/58	2.580421e-02	4.962348e-02	0	0	4.371491e+01	1.598750e+02	GSG1L
+GO_Biological_Process_2021	response to retinoic acid (GO:0032526)	1/62	2.756180e-02	5.185325e-02	0	0	4.084016e+01	1.466703e+02	AQP1
+GO_Biological_Process_2021	cellular response to reactive oxygen species (GO:0034614)	1/63	2.800075e-02	5.185325e-02	0	0	4.017944e+01	1.436625e+02	AQP1
+GO_Biological_Process_2021	regulation of protein localization (GO:0032880)	1/66	2.931657e-02	5.330285e-02	0	0	3.831923e+01	1.352517e+02	TRIM67
+GO_Biological_Process_2021	cellular response to decreased oxygen levels (GO:0036294)	1/69	3.063080e-02	5.450618e-02	0	0	3.662316e+01	1.276592e+02	AQP1
+GO_Biological_Process_2021	cellular response to light stimulus (GO:0071482)	1/70	3.106852e-02	5.450618e-02	0	0	3.609058e+01	1.252906e+02	AQP1
+GO_Biological_Process_2021	defense response to Gram-negative bacterium (GO:0050829)	1/73	3.238064e-02	5.582869e-02	0	0	3.458160e+01	1.186216e+02	AQP1
+GO_Biological_Process_2021	cellular response to UV (GO:0034644)	1/77	3.412768e-02	5.784352e-02	0	0	3.275493e+01	1.106346e+02	AQP1
+GO_Biological_Process_2021	regulation of neuron differentiation (GO:0045664)	1/79	3.500015e-02	5.809199e-02	0	0	3.191186e+01	1.069814e+02	ZFHX3
+GO_Biological_Process_2021	positive regulation of cell adhesion (GO:0045785)	1/80	3.543612e-02	5.809199e-02	0	0	3.150633e+01	1.052319e+02	ZFHX3
+GO_Biological_Process_2021	regulation of cation channel activity (GO:2001257)	1/89	3.935198e-02	6.246346e-02	0	0	2.827131e+01	9.146358e+01	GSG1L
+GO_Biological_Process_2021	regulation of cysteine-type endopeptidase activity involved in apoptotic process (GO:0043281)	1/89	3.935198e-02	6.246346e-02	0	0	2.827131e+01	9.146358e+01	AQP1
+GO_Biological_Process_2021	organic anion transport (GO:0015711)	1/99	4.368636e-02	6.720979e-02	0	0	2.537372e+01	7.943801e+01	AQP1
+GO_Biological_Process_2021	response to UV (GO:0009411)	1/99	4.368636e-02	6.720979e-02	0	0	2.537372e+01	7.943801e+01	AQP1
+GO_Biological_Process_2021	positive regulation of vasculature development (GO:1904018)	1/102	4.498329e-02	6.778395e-02	0	0	2.461634e+01	7.634669e+01	AQP1
+GO_Biological_Process_2021	cellular response to organonitrogen compound (GO:0071417)	1/103	4.541525e-02	6.778395e-02	0	0	2.437377e+01	7.536145e+01	AQP1
+GO_Biological_Process_2021	phosphatidylinositol metabolic process (GO:0046488)	1/112	4.929507e-02	7.249275e-02	0	0	2.238739e+01	6.738449e+01	PGAP1
+GO_Biological_Process_2021	positive regulation of angiogenesis (GO:0045766)	1/116	5.101494e-02	7.393469e-02	0	0	2.160435e+01	6.428669e+01	AQP1
+GO_Biological_Process_2021	potassium ion transport (GO:0006813)	1/122	5.358955e-02	7.655649e-02	0	0	2.052686e+01	6.006983e+01	AQP1
+GO_Biological_Process_2021	cellular response to hypoxia (GO:0071456)	1/131	5.743982e-02	7.977753e-02	0	0	1.909712e+01	5.456079e+01	AQP1
+GO_Biological_Process_2021	cellular response to metal ion (GO:0071248)	1/131	5.743982e-02	7.977753e-02	0	0	1.909712e+01	5.456079e+01	AQP1
+GO_Biological_Process_2021	regulation of cell adhesion (GO:0030155)	1/133	5.829354e-02	7.985417e-02	0	0	1.880587e+01	5.345125e+01	ZFHX3
+GO_Biological_Process_2021	nitrogen compound transport (GO:0071705)	1/143	6.255186e-02	8.452954e-02	0	0	1.747271e+01	4.843015e+01	AQP1
+GO_Biological_Process_2021	brain development (GO:0007420)	1/150	6.552249e-02	8.621380e-02	0	0	1.664597e+01	4.536630e+01	ZFHX3
+GO_Biological_Process_2021	cellular response to organic cyclic compound (GO:0071407)	1/150	6.552249e-02	8.621380e-02	0	0	1.664597e+01	4.536630e+01	AQP1
+GO_Biological_Process_2021	regulation of cell differentiation (GO:0045595)	1/156	6.806208e-02	8.839231e-02	0	0	1.599677e+01	4.298869e+01	ZFHX3
+GO_Biological_Process_2021	cation transport (GO:0006812)	1/174	7.564408e-02	9.681409e-02	0	0	1.431936e+01	3.696853e+01	AQP1
+GO_Biological_Process_2021	defense response to bacterium (GO:0042742)	1/176	7.648313e-02	9.681409e-02	0	0	1.415429e+01	3.638621e+01	AQP1
+GO_Biological_Process_2021	endoplasmic reticulum to Golgi vesicle-mediated transport (GO:0006888)	1/185	8.025049e-02	1.003131e-01	0	0	1.345584e+01	3.394374e+01	PGAP1
+GO_Biological_Process_2021	regulation of angiogenesis (GO:0045765)	1/203	8.774424e-02	1.083262e-01	0	0	1.224567e+01	2.979774e+01	AQP1
+GO_Biological_Process_2021	cellular response to lipid (GO:0071396)	1/219	9.435975e-02	1.150729e-01	0	0	1.133773e+01	2.676431e+01	AQP1
+GO_Biological_Process_2021	central nervous system development (GO:0007417)	1/268	1.143553e-01	1.377774e-01	0	0	9.234082e+00	2.002360e+01	ZFHX3
+GO_Biological_Process_2021	cellular response to oxygen-containing compound (GO:1901701)	1/323	1.363310e-01	1.622988e-01	0	0	7.635481e+00	1.521499e+01	AQP1
+GO_Biological_Process_2021	negative regulation of programmed cell death (GO:0043069)	1/381	1.589790e-01	1.870341e-01	0	0	6.450987e+00	1.186326e+01	AQP1
+GO_Biological_Process_2021	regulation of nucleic acid-templated transcription (GO:1903506)	1/430	1.776996e-01	2.066274e-01	0	0	5.699883e+00	9.847465e+00	ZFHX3
+GO_Biological_Process_2021	regulation of cellular macromolecule biosynthetic process (GO:2000112)	1/468	1.919617e-01	2.206456e-01	0	0	5.225910e+00	8.625153e+00	ZFHX3
+GO_Biological_Process_2021	positive regulation of cell population proliferation (GO:0008284)	1/474	1.941934e-01	2.206743e-01	0	0	5.158034e+00	8.453506e+00	AQP1
+GO_Biological_Process_2021	negative regulation of apoptotic process (GO:0043066)	1/485	1.982706e-01	2.227759e-01	0	0	5.037965e+00	8.152045e+00	AQP1
+GO_Biological_Process_2021	positive regulation of nucleic acid-templated transcription (GO:1903508)	1/511	2.078348e-01	2.309275e-01	0	0	4.774755e+00	7.501196e+00	ZFHX3
+GO_Biological_Process_2021	positive regulation of cellular process (GO:0048522)	1/625	2.485839e-01	2.731692e-01	0	0	3.879607e+00	5.400315e+00	ZFHX3
+GO_Biological_Process_2021	regulation of transcription by RNA polymerase II (GO:0006357)	2/2206	2.609615e-01	2.836538e-01	0	0	2.305808e+00	3.097581e+00	ZFHX3;DMRT2
+GO_Biological_Process_2021	regulation of transcription, DNA-templated (GO:0006355)	2/2244	2.676284e-01	2.860985e-01	0	0	2.261884e+00	2.981515e+00	ZFHX3;DMRT2
+GO_Biological_Process_2021	negative regulation of transcription by RNA polymerase II (GO:0000122)	1/684	2.689326e-01	2.860985e-01	0	0	3.533675e+00	4.640755e+00	ZFHX3
+GO_Biological_Process_2021	regulation of apoptotic process (GO:0042981)	1/742	2.884575e-01	3.036395e-01	0	0	3.247301e+00	4.037069e+00	AQP1
+GO_Biological_Process_2021	positive regulation of transcription by RNA polymerase II (GO:0045944)	1/908	3.418028e-01	3.560446e-01	0	0	2.630099e+00	2.823468e+00	ZFHX3
+GO_Biological_Process_2021	negative regulation of transcription, DNA-templated (GO:0045892)	1/948	3.541129e-01	3.650648e-01	0	0	2.513728e+00	2.609600e+00	ZFHX3
+GO_Biological_Process_2021	cellular protein modification process (GO:0006464)	1/1025	3.772349e-01	3.849336e-01	0	0	2.315308e+00	2.257164e+00	PGAP1
+GO_Biological_Process_2021	regulation of gene expression (GO:0010468)	1/1079	3.930085e-01	3.969783e-01	0	0	2.193066e+00	2.048157e+00	ZFHX3
+GO_Biological_Process_2021	positive regulation of transcription, DNA-templated (GO:0045893)	1/1183	4.223899e-01	4.223899e-01	0	0	1.989107e+00	1.714265e+00	ZFHX3

@@ -1,0 +1,14 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Molecular_Function_2021	uridylyltransferase activity (GO:0070569)	1/6	1.499220e-03	1.948986e-02	0	0	9.995000e+02	6.499559e+03	UAP1
+GO_Molecular_Function_2021	protein heterodimerization activity (GO:0046982)	1/188	4.612897e-02	2.027618e-01	0	0	2.648128e+01	8.146475e+01	ATF3
+GO_Molecular_Function_2021	transcription regulatory region nucleic acid binding (GO:0001067)	1/212	5.189309e-02	2.027618e-01	0	0	2.344076e+01	6.935112e+01	ATF3
+GO_Molecular_Function_2021	DNA-binding transcription repressor activity, RNA polymerase II-specific (GO:0001227)	1/256	6.238826e-02	2.027618e-01	0	0	1.935294e+01	5.369238e+01	ATF3
+GO_Molecular_Function_2021	DNA-binding transcription activator activity, RNA polymerase II-specific (GO:0001228)	1/333	8.053105e-02	2.093807e-01	0	0	1.480648e+01	3.729918e+01	ATF3
+GO_Molecular_Function_2021	transcription cis-regulatory region binding (GO:0000976)	1/549	1.299309e-01	2.155200e-01	0	0	8.871807e+00	1.810516e+01	ATF3
+GO_Molecular_Function_2021	protein homodimerization activity (GO:0042803)	1/636	1.492177e-01	2.155200e-01	0	0	7.622047e+00	1.449979e+01	ATF3
+GO_Molecular_Function_2021	double-stranded DNA binding (GO:0003690)	1/651	1.525082e-01	2.155200e-01	0	0	7.440385e+00	1.399192e+01	ATF3
+GO_Molecular_Function_2021	sequence-specific DNA binding (GO:0043565)	1/707	1.647027e-01	2.155200e-01	0	0	6.830382e+00	1.231937e+01	ATF3
+GO_Molecular_Function_2021	sequence-specific double-stranded DNA binding (GO:1990837)	1/712	1.657846e-01	2.155200e-01	0	0	6.780591e+00	1.218517e+01	ATF3
+GO_Molecular_Function_2021	RNA polymerase II cis-regulatory region sequence-specific DNA binding (GO:0000978)	1/1149	2.561095e-01	2.774520e-01	0	0	4.104312e+00	5.590689e+00	ATF3
+GO_Molecular_Function_2021	cis-regulatory region sequence-specific DNA binding (GO:0000987)	1/1149	2.561095e-01	2.774520e-01	0	0	4.104312e+00	5.590689e+00	ATF3
+GO_Molecular_Function_2021	RNA polymerase II transcription regulatory region sequence-specific DNA binding (GO:0000977)	1/1359	2.966354e-01	2.966354e-01	0	0	3.430965e+00	4.169485e+00	ATF3

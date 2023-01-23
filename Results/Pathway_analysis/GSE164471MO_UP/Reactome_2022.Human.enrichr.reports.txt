@@ -1,0 +1,9 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Reactome_2022	Interleukin-20 Family Signaling R-HSA-8854691	1/26	7.775574e-03	4.458543e-02	0	0	1.597520e+02	7.758784e+02	IL24
+Reactome_2022	Sensory Processing Of Sound By Outer Hair Cells Of Cochlea R-HSA-9662361	1/53	1.579686e-02	4.458543e-02	0	0	7.670000e+01	3.181473e+02	ESPNL
+Reactome_2022	Sensory Processing Of Sound By Inner Hair Cells Of Cochlea R-HSA-9662360	1/67	1.993473e-02	4.458543e-02	0	0	6.038788e+01	2.364362e+02	ESPNL
+Reactome_2022	Sensory Processing Of Sound R-HSA-9659379	1/75	2.229271e-02	4.458543e-02	0	0	5.383784e+01	2.047720e+02	ESPNL
+Reactome_2022	Signaling By Interleukins R-HSA-449147	1/453	1.284480e-01	2.055167e-01	0	0	8.646903e+00	1.774545e+01	IL24
+Reactome_2022	Sensory Perception R-HSA-9709957	1/616	1.711608e-01	2.205530e-01	0	0	6.302114e+00	1.112419e+01	ESPNL
+Reactome_2022	Cytokine Signaling In Immune System R-HSA-1280215	1/702	1.929839e-01	2.205530e-01	0	0	5.504422e+00	9.055592e+00	IL24
+Reactome_2022	Immune System R-HSA-168256	1/1943	4.584245e-01	4.584245e-01	0	0	1.859114e+00	1.450034e+00	IL24

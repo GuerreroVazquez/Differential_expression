@@ -1,0 +1,2 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+KEGG_2021_Human	Ribosome biogenesis in eukaryotes	1/108	5.783572e-02	5.783572e-02	0	0	1.858131e+01	5.295949e+01	GTPBP4

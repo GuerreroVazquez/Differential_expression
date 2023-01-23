@@ -1,0 +1,14 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Cellular_Component_2021	microvillus (GO:0005902)	1/57	3.091449e-02	2.907137e-01	0	0	3.559464e+01	1.237459e+02	CLIC4
+GO_Cellular_Component_2021	actin-based cell projection (GO:0098858)	1/83	4.472518e-02	2.907137e-01	0	0	2.427683e+01	7.543341e+01	CLIC4
+GO_Cellular_Component_2021	nuclear membrane (GO:0031965)	1/204	1.066744e-01	3.634524e-01	0	0	9.746798e+00	2.181308e+01	GTPBP4
+GO_Cellular_Component_2021	cell-cell junction (GO:0005911)	1/271	1.393836e-01	3.634524e-01	0	0	7.303333e+00	1.439140e+01	CLIC4
+GO_Cellular_Component_2021	actin cytoskeleton (GO:0015629)	1/316	1.607372e-01	3.634524e-01	0	0	6.245714e+00	1.141707e+01	CLIC4
+GO_Cellular_Component_2021	microtubule cytoskeleton (GO:0015630)	1/331	1.677473e-01	3.634524e-01	0	0	5.957273e+00	1.063550e+01	CLIC4
+GO_Cellular_Component_2021	cytoskeleton (GO:0005856)	1/600	2.847590e-01	4.438571e-01	0	0	3.237062e+00	4.066113e+00	CLIC4
+GO_Cellular_Component_2021	endoplasmic reticulum membrane (GO:0005789)	1/712	3.289028e-01	4.438571e-01	0	0	2.711392e+00	3.015050e+00	TMX2
+GO_Cellular_Component_2021	nucleolus (GO:0005730)	1/733	3.368985e-01	4.438571e-01	0	0	2.630738e+00	2.862173e+00	GTPBP4
+GO_Cellular_Component_2021	nuclear lumen (GO:0031981)	1/745	3.414285e-01	4.438571e-01	0	0	2.586694e+00	2.779705e+00	GTPBP4
+GO_Cellular_Component_2021	intracellular non-membrane-bounded organelle (GO:0043232)	1/1158	4.812070e-01	5.686991e-01	0	0	1.627658e+00	1.190563e+00	GTPBP4
+GO_Cellular_Component_2021	nucleus (GO:0005634)	2/4484	7.440351e-01	8.060380e-01	0	0	7.688532e-01	2.273246e-01	CLIC4;GTPBP4
+GO_Cellular_Component_2021	intracellular membrane-bounded organelle (GO:0043231)	2/5192	8.220488e-01	8.220488e-01	0	0	6.336545e-01	1.241681e-01	CLIC4;GTPBP4

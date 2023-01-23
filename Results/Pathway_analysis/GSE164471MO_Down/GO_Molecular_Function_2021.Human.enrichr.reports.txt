@@ -1,0 +1,10 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Molecular_Function_2021	disulfide oxidoreductase activity (GO:0015036)	1/8	4.392244e-03	3.953020e-02	0	0	2.854571e+02	1.549437e+03	TMX2
+GO_Molecular_Function_2021	chloride channel activity (GO:0005254)	1/64	3.465050e-02	1.103384e-01	0	0	3.162857e+01	1.063493e+02	CLIC4
+GO_Molecular_Function_2021	anion channel activity (GO:0005253)	1/68	3.677947e-02	1.103384e-01	0	0	2.973433e+01	9.820700e+01	CLIC4
+GO_Molecular_Function_2021	GTP binding (GO:0005525)	1/189	9.919833e-02	1.689218e-01	0	0	1.053245e+01	2.433663e+01	GTPBP4
+GO_Molecular_Function_2021	guanyl ribonucleotide binding (GO:0032561)	1/214	1.116270e-01	1.689218e-01	0	0	9.284507e+00	2.035714e+01	GTPBP4
+GO_Molecular_Function_2021	GTPase activity (GO:0003924)	1/216	1.126145e-01	1.689218e-01	0	0	9.197209e+00	2.008472e+01	GTPBP4
+GO_Molecular_Function_2021	nucleoside-triphosphatase activity (GO:0017111)	1/278	1.427374e-01	1.835195e-01	0	0	7.116245e+00	1.385354e+01	GTPBP4
+GO_Molecular_Function_2021	purine ribonucleoside triphosphate binding (GO:0035639)	1/460	2.258728e-01	2.541069e-01	0	0	4.254902e+00	6.330372e+00	GTPBP4
+GO_Molecular_Function_2021	RNA binding (GO:0003723)	1/1406	5.515836e-01	5.515836e-01	0	0	1.322705e+00	7.869588e-01	GTPBP4
