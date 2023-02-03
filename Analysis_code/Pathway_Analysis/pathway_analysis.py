@@ -224,3 +224,18 @@ def test_dec9_Tony_pathways():
     pathways = get_pathways(genes_file=up_down_file, sel_databases_names=databases_names)
     pathways.to_csv('../../Results/Pathway_A_def_expressed_gene_names_Tony_all_db.csv', index=False)
 
+def test_Feb_3_microarray_1_pathways():
+    """
+    This is ran in order to get the same patways and wordclouds but separating on up and down
+    regulated
+    :return:
+    """
+
+    up_down_file = '../../GSE87105.csv'
+    sel_databases_names = ['GO_Molecular_Function_2021',
+                           'GO_Cellular_Component_2021',
+                           'GO_Biological_Process_2021',
+                           'Reactome_2022',
+                           'KEGG_2021_Human']
+    pathways = get_pathways(genes_file=up_down_file, sel_databases_names=sel_databases_names)
+    pathways.to_csv('../../Results/Pathway_A_def_expressed_gene_names_GSE87105_all_db.csv', index=False)
