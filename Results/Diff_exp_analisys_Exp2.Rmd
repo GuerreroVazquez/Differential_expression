@@ -37,8 +37,8 @@ metadata <- read.csv(file, header = TRUE)
 
 head(metadata)
 metadata$Age
-young = 50
-metadata$category <- ifelse(metadata$Age > young,"Old", "Young")
+young = 65
+metadata$category <- ifelse(metadata$Age > 65,"Old", ifelse(metadata$Age > 35,"Middle Age", "Young"))
 metadata$category
 
 ```
@@ -148,12 +148,86 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 ```{r Plot_counts}
 par(mfrow=c(2,3))
 
-for (gene_n in rownames(top100))
+for (gene_n in c('ENSG00000164588.6',	'ENSG00000133020.4'))
 {
   plotCounts(dds, gene=gene_n)
 }
 
 
+
+```
+```{R}
+# First, extract the expression values for the two genes
+gene1 <- as.numeric(txi.kallisto.tsv$counts["ENSG00000237973.1",])
+gene2 <- as.numeric(txi.kallisto.tsv$counts["ENSG00000249780.1",])
+
+# Create a data frame with the expression values and age groups
+age_groups <- sampleTable$condition
+
+# Create a data frame with the expression values and age groups
+data <- data.frame(age_group = age_groups,
+                   gene1 = gene1,
+                   gene2 = gene2)
+data$age_group <- factor(data$age_group, levels = c("Young", "Middle Age", "Old"))
+
+# Add age group labels to dds
+ggplot(data, aes(x=age_group, y=gene1, fill=age_group)) +
+  geom_violin() +
+  ylab("MTCO1P12 expression") +
+  ggtitle("Expression of Gene MTCO1P12 by age group")
+
+ggplot(data, aes(x=age_group, y=gene2, fill=age_group)) +
+  geom_violin() +
+  ylab("AC093809.1 expression") +
+  ggtitle("Expression of Gene AC093809.1 by age group") 
+
+# Plot boxplots for each gene and age group
+ggplot(data, aes(x=age_group, y=gene1, fill=age_group)) +
+  geom_boxplot() +
+  ylab("MTCO1P12 expression") +
+  ggtitle("Expression of Gene MTCO1P12 by age group")
+
+ggplot(data, aes(x=age_group, y=gene2, fill=age_group)) +
+  geom_boxplot() +
+  ylab("AC093809.1 expression") +
+  ggtitle("Expression of Gene AC093809.1 by age group") 
+```
+
+```{R}
+# Extract the expression values for the two genes
+gene1 <- as.numeric(dds$normalizedCounts["ENSG00000237973.1",])
+gene2 <- as.numeric(dds$normalizedCounts["ENSG00000133020.4",])
+
+# Create a data frame with the expression values and age groups
+data <- data.frame(age_group = colData(dds)$age_group,
+                   gene1 = gene1,
+                   gene2 = gene2)
+
+# Plot violin plots for each gene and age group
+ggplot(data, aes(x=age_group, y=gene1, fill=age_group)) +
+  geom_violin() +
+  ylab("Gene 1 expression") +
+  ggtitle("Expression of Gene 1 by age group") +
+  facet_wrap(~age_group)
+
+ggplot(data, aes(x=age_group, y=gene2, fill=age_group)) +
+  geom_violin() +
+  ylab("Gene 2 expression") +
+  ggtitle("Expression of Gene 2 by age group") +
+  facet_wrap(~age_group)
+
+# Plot boxplots for each gene and age group
+ggplot(data, aes(x=age_group, y=gene1, fill=age_group)) +
+  geom_boxplot() +
+  ylab("Gene 1 expression") +
+  ggtitle("Expression of Gene 1 by age group") +
+  facet_wrap(~age_group)
+
+ggplot(data, aes(x=age_group, y=gene2, fill=age_group)) +
+  geom_boxplot() +
+  ylab("Gene 2 expression") +
+  ggtitle("Expression of Gene 2 by age group") +
+  facet_wrap(~age_group)
 
 ```
 ```{r VOlcano_plots}

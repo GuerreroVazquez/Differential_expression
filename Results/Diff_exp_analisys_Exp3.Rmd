@@ -55,8 +55,8 @@ samples <- list.files(dir, pattern=NULL, all.files=FALSE, full.names=FALSE)[-1]
 files <- c()
 for (sample in samples)
 {
-  if (sample != 'metadata.csv'){
-  files <- append(files, paste0(dir,"/",sample,"/",sample,"/abundance.tsv"))
+  if (sample != 'metadata.csv' & sample != 'All_samples.csv' & sample != 'metadata_filtered.csv'){
+    files <- append(files,paste0(dir,"/",sample,"/",sample,"/abundance.tsv"))  
   }
 }
 
@@ -153,5 +153,40 @@ plotMA(dds)
 ```
 
 
+```{R}
+# First, extract the expression values for the two genes
+gene1 <- as.numeric(txi.kallisto.tsv$counts["ENSG00000164588.6",])
+gene2 <- as.numeric(txi.kallisto.tsv$counts["ENSG00000133020.4",])
 
+# Create a data frame with the expression values and age groups
+age_groups <- sampleTable$condition
+
+# Create a data frame with the expression values and age groups
+data <- data.frame(age_group = age_groups,
+                   gene1 = gene1,
+                   gene2 = gene2)
+data$age_group <- factor(data$age_group, levels = c("Young", "Middle Age", "Old"))
+
+# Add age group labels to dds
+ggplot(data, aes(x=age_group, y=gene1, fill=age_group)) +
+  geom_violin() +
+  ylab("HCN1 expression") +
+  ggtitle("Expression of Gene HCN1 by age group")
+
+ggplot(data, aes(x=age_group, y=gene2, fill=age_group)) +
+  geom_violin() +
+  ylab("MYH8 expression") +
+  ggtitle("Expression of Gene MYH8 by age group") 
+
+# Plot boxplots for each gene and age group
+ggplot(data, aes(x=age_group, y=gene1, fill=age_group)) +
+  geom_boxplot() +
+  ylab("HCN1 expression") +
+  ggtitle("Expression of Gene HCN1 by age group")
+
+ggplot(data, aes(x=age_group, y=gene2, fill=age_group)) +
+  geom_boxplot() +
+  ylab("MYH8 expression") +
+  ggtitle("Expression of Gene MYH8 by age group") 
+```
 d
