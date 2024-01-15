@@ -14,7 +14,7 @@
 
 
 samples_folder="data/"
-file="rnaSeq_samples_1.txt"
+file="rnaSeq_samples.txt"
 experiments="$samples_folder/$file"
 echo $(date)-${sample}:  experiments >>test_Karen_SeqAlig_log.txt
 cd /data2/kGuerreroVazquez/diff_exp_adventure
@@ -84,11 +84,11 @@ run_sample(){
 
       if [ $pair_sequence -eq 1 ]; then
           echo $(date)-${sample}:  "Running cutadapt for pair end" >>test_Karen_SeqAlig_log.txt
-          cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq -o cutadapted/$experiment/$sample/${sample}_1.fastq -p cutadapted/$experiment/$sample/${sample}_2.fastq  >> cutadapt_${sample}.out 2> cutadapt_${sample}.err
+          cutadapt -q 28 -m 30 -a GATCGGAAGAGCACACGTCTG -a AGAGCACACGTCTG fastq/$experiment/$sample/${sample}_1.fastq fastq/$experiment/$sample/${sample}_2.fastq -o cutadapted/$experiment/$sample/${sample}_1.fastq -p cutadapted/$experiment/$sample/${sample}_2.fastq  >> cutadapt_${sample}.out 2> cutadapt_${sample}.err
           status=$?
       else 
           echo $(date)-${sample}:  "Running cutadapt for single end" >>test_Karen_SeqAlig_log.txt
-          cutadapt -q 28 -m 30 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA fastq/$experiment/$sample/${sample}.fastq -o cutadapted/$experiment/$sample/${sample}.fastq > cutadapt_${sample}.out 2> cutadapt_${sample}.err
+          cutadapt -q 28 -m 30 -a GATCGGAAGAGCACACGTCTGAACTCCAGTCACGATCAGATCTCGTATGC fastq/$experiment/$sample/${sample}.fastq -o cutadapted/$experiment/$sample/${sample}.fastq > cutadapt_${sample}.out 2> cutadapt_${sample}.err
           status=$?
       fi
       
@@ -167,17 +167,16 @@ while IFS= read -r experiment; do
   running_counter=0
   while IFS= read -r sample_name; do
       if (( running_counter < max_simultaneous )); then
-          do
-            run_sample $sample_name &
-          done 
+            run_sample $sample_name & 
+
       else
-        while (( running_counter >= max_simultaneous )); then
+        while (( running_counter >= max_simultaneous )); do
             echo $(date)-${sample_name}:  "Waiting to run  $sample_name due to $running_counter samples being processed right now." >>test_Karen_SeqAlig_log.txt
             sleep 30m
-        done
-        do
+            running_counter=0
+
+        done      
             run_sample $sample_name &
-        done 
           
       fi
       
