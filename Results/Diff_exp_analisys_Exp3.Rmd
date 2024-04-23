@@ -14,6 +14,8 @@ experiment = 'GSE157585'
 
 ## R Markdown
 
+Experiment (top) is the name of the folder where you have the samples. I was using several, if you only have one, then you only need to change it once.
+
 ```{r Install_libraries, echo=FALSE}
 library( DESeq2 )
 # library(ggplot2)
@@ -23,7 +25,7 @@ library(tximport)
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Here you add the path where you have the files that you will use. All_samples.csv has the name of all the samples
 
 ```{r Count_data}
 
@@ -32,11 +34,18 @@ file
 # countData <- read.csv(file, header = TRUE)
 # head(countData)
 ```
+
+Similarly, there is metadata.csv that contains the information for each sample
+
+
 ```{r Metadata}
 file=paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/metadata.csv")
 
 metadata <- read.csv(file, header = TRUE)
+```
 
+Here define the categories
+```{r Category}
 #head(metadata)
 #metadata$Age
 young = 50
@@ -61,6 +70,9 @@ for (sample in samples)
 }
 
 ```
+Here we got the reference genome, in this case is human.
+The RNAseq was pseudoaligned with Kalisto, so Kalisto is what we need to find the mRNAs. This will give you the counts
+
 
 ```{r, ECHO=FALSE}
 
@@ -75,6 +87,19 @@ tx2gene <- read.csv(file, header = TRUE)
 txi.kallisto.tsv <- tximport(files, type = "kallisto", tx2gene = tx2gene, ignoreAfterBar = TRUE)
 # head(txi.kallisto.tsv$counts)
 ```
+And here we write those abundances so if you need to re-run, you will only need this file.
+
+```{r}
+
+expression_file=paste0("/home/karen/Documents/phd/DifferentialExpression/",experiment,"/",experiment,"_abundance.csv")
+
+write.table(abundance_df, file=expression_file, sep=",", row.names=FALSE, col.names=TRUE, quote = FALSE)
+
+```
+
+Here we get the Differentially expressed genes based on the counts 
+
+
 
 ```{r Get Dseq, echo=FALSE}
  
@@ -101,6 +126,9 @@ head(res)
 
 
 ```
+We wirte them 
+
+
 ```{r}
 summary(res)
 res <- res[order(res$padj),]
@@ -117,8 +145,9 @@ write.csv(expressed, paste0(experiment,"def_expressed.csv"))
 write.csv(no_expressed, paste0(experiment,"no_dif_expressed.csv"))
 
 ```
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+
+Abf from here they are just plots
 
 ```{r Plot_counts}
 par(mfrow=c(2,3))
