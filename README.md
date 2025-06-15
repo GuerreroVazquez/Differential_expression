@@ -36,5 +36,5 @@ For any questions or feedback please reach out to:
 
 - **Email**: [GuerreroVazquez@gmail.com](mailto:GuerreroVazquez@gmail.com)
 - **GitHub Profile**: [GuerreroVazquez](https://github.com/GuerreroVazquez)
-- **LinkedIn**: [GuerreroVazquez](https://www.linkedin.com/in/GuerreroVazquez/)
+- **LinkedIn**: [GuerreroVazquez](https://www.linkedin.com/in/kguerrerovazquez/)
 Feel free to open an issue on GitHub or contact me in any way if you have any queries or suggestions.
